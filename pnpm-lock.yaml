@@ -125,9 +125,6 @@ importers:
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
-      image-size:
-        specifier: ^2.0.2
-        version: 2.0.2
       input-otp:
         specifier: 1.4.1
         version: 1.4.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -213,6 +210,9 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      image-size:
+        specifier: ^2.0.2
+        version: 2.0.2
       lighthouse:
         specifier: ^13.0.1
         version: 13.0.1

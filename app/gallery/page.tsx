@@ -1,6 +1,4 @@
-import fs from "fs"
-import path from "path"
-import { imageSize } from "image-size"
+import imageManifest from "@/lib/generated/image-manifest.json"
 import MasonryGallery from "@/components/masonry-gallery"
 import { CloudinaryImage } from "@/components/ui/cloudinary-image"
 import { siteConfig } from "@/content/site"
@@ -21,76 +19,14 @@ const GALLERY_TEXT = "#9B6A41"
 const GALLERY_DECO_FILTER =
   "brightness(0) saturate(100%) invert(32%) sepia(55%) saturate(900%) hue-rotate(355deg) brightness(95%) contrast(90%)"
 
-// Valid image extensions (checked case-insensitively)
-const VALID_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"])
-
-/**
- * Reads images from a public/ sub-folder, extracts real dimensions via image-size,
- * and returns them sorted by the number
- * in parentheses in the filename (e.g. "couple (3).jpg" → 3).
- * Files that cannot be read or lack dimension metadata are silently skipped.
- */
-async function getLocalImages(folder: string) {
-  const dirPath = path.join(process.cwd(), "public", folder)
-
-  let filenames: string[]
-  try {
-    filenames = await fs.promises.readdir(dirPath)
-  } catch {
-    // Directory doesn't exist or can't be read
-    return []
-  }
-
-  const imageFilenames = filenames.filter((f) =>
-    VALID_EXTENSIONS.has(path.extname(f).toLowerCase())
-  )
-
-  const results = await Promise.all(
-    imageFilenames.map(async (filename) => {
-      const filePath = path.join(dirPath, filename)
-      try {
-        const buffer = await fs.promises.readFile(filePath)
-        const { width, height } = imageSize(buffer)
-        if (!width || !height) return null
-        return { src: `/${folder}/${filename}`, width, height }
-      } catch {
-        return null
-      }
-    })
-  )
-
-  return results
-    .filter((img): img is NonNullable<typeof img> => img !== null)
-    .sort((a, b) => {
-      // Sort numerically by the number inside parentheses: "couple (3).jpg" → 3
-      const numA = parseInt(a.src.match(/\((\d+)\)/)?.[1] ?? "0", 10)
-      const numB = parseInt(b.src.match(/\((\d+)\)/)?.[1] ?? "0", 10)
-      return numA - numB
-    })
-}
-
-export default async function GalleryPage() {
-  const [mobileImages, desktopImages] = await Promise.all([
-    getLocalImages("mobile-background"),
-    getLocalImages("desktop-background"),
-  ])
-
-  const images = [
-    ...mobileImages.map(({ src, width, height }) => ({
-      src,
-      width,
-      height,
-      category: "mobile" as const,
-      orientation: (height >= width ? "portrait" : "landscape") as "portrait" | "landscape",
-    })),
-    ...desktopImages.map(({ src, width, height }) => ({
-      src,
-      width,
-      height,
-      category: "desktop" as const,
-      orientation: (height >= width ? "portrait" : "landscape") as "portrait" | "landscape",
-    })),
-  ]
+export default function GalleryPage() {
+  const images = imageManifest as {
+    src: string
+    width: number
+    height: number
+    category: "mobile" | "desktop"
+    orientation: "portrait" | "landscape"
+  }[]
 
 
   return (
