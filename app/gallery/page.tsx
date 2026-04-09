@@ -1,8 +1,9 @@
 import fs from "fs/promises"
 import path from "path"
+import sharp from "sharp"
 import MasonryGallery from "@/components/masonry-gallery"
-import { siteConfig } from "@/content/site"
 import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import { siteConfig } from "@/content/site"
 import { Cinzel, Cormorant_Garamond } from "next/font/google"
 
 const cinzel = Cinzel({
@@ -23,34 +24,61 @@ const GALLERY_DECO_FILTER =
 // Generate on each request so newly added images in public/ appear without a rebuild
 export const dynamic = "force-dynamic"
 
-async function getGalleryImages() {
-  const abs = path.join(process.cwd(), "public", "gallery")
+async function getImagesFrom(dir: string) {
+  const abs = path.join(process.cwd(), "public", dir)
   try {
     const entries = await fs.readdir(abs, { withFileTypes: true })
-    return entries
+    const paths = entries
       .filter((e) => e.isFile())
-      .map((e) => `/gallery/${e.name}`)
+      .map((e) => `/${dir}/${e.name}`)
       .filter((p) => p.match(/\.(jpe?g|png|webp|gif)$/i))
       .sort((a, b) => {
-        // Extract numeric part from filename for proper numerical sorting
-        const numA = parseInt(a.match(/\((\d+)\)/)?.[1] || "0", 10)
-        const numB = parseInt(b.match(/\((\d+)\)/)?.[1] || "0", 10)
+        // Extract the first number found in the filename for proper numerical sorting
+        const numA = parseInt(a.match(/(\d+)/)?.[1] || "0", 10)
+        const numB = parseInt(b.match(/(\d+)/)?.[1] || "0", 10)
         return numA - numB
       })
+
+    // Read real dimensions for each image so the grid respects orientation
+    const withDimensions = await Promise.all(
+      paths.map(async (src) => {
+        try {
+          const filePath = path.join(process.cwd(), "public", src.replace(/^\//, ""))
+          const meta = await sharp(filePath).metadata()
+          return { src, width: meta.width ?? 4, height: meta.height ?? 5 }
+        } catch {
+          return { src, width: 4, height: 5 }
+        }
+      })
+    )
+    return withDimensions
   } catch {
     return []
   }
 }
 
 export default async function GalleryPage() {
-  const allImages = await getGalleryImages()
-  const images = allImages.map((src) => ({
-    src,
-    category: "gallery" as const,
-    width: 1200,
-    height: 900,
-    orientation: "landscape" as const,
-  }))
+  const [mobileImages, desktopImages] = await Promise.all([
+    getImagesFrom("mobile-background"),
+    getImagesFrom("desktop-background"),
+  ])
+
+  const images = [
+    ...mobileImages.map(({ src, width, height }) => ({
+      src,
+      width,
+      height,
+      category: "mobile" as const,
+      orientation: (height >= width ? "portrait" : "landscape") as "portrait" | "landscape",
+    })),
+    ...desktopImages.map(({ src, width, height }) => ({
+      src,
+      width,
+      height,
+      category: "desktop" as const,
+      orientation: (height >= width ? "portrait" : "landscape") as "portrait" | "landscape",
+    })),
+  ]
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-white">
@@ -61,7 +89,7 @@ export default async function GalleryPage() {
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
+          alt="Flower decoration"
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-y-[-1]"
@@ -74,7 +102,7 @@ export default async function GalleryPage() {
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
         <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
+          alt="Flower decoration"
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1] scale-y-[-1]"
@@ -87,7 +115,7 @@ export default async function GalleryPage() {
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
         <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
+          alt="Flower decoration"
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25"
@@ -100,7 +128,7 @@ export default async function GalleryPage() {
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
         <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
+          alt="Flower decoration"
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1]"
@@ -156,7 +184,14 @@ export default async function GalleryPage() {
                 className="px-2 py-1 rounded border"
                 style={{ backgroundColor: `${GALLERY_TEXT}10`, borderColor: `${GALLERY_TEXT}40`, color: GALLERY_TEXT }}
               >
-                public/gallery
+                public/mobile-background
+              </code>{" "}
+              or{" "}
+              <code
+                className="px-2 py-1 rounded border"
+                style={{ backgroundColor: `${GALLERY_TEXT}10`, borderColor: `${GALLERY_TEXT}40`, color: GALLERY_TEXT }}
+              >
+                public/desktop-background
               </code>
               .
             </p>

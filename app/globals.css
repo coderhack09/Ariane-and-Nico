@@ -88,12 +88,12 @@
   --font-serif: "Great Vibes", "Great Vibes Fallback";
 
   /* ─── Motif palette — edit here, affects every component ─── */
-  --color-motif-deep:    #5A3A1A;  /* deep brown (main text / headers) */
-  --color-motif-medium:  #8B5E34;  /* warm gold-brown */
-  --color-motif-accent:  #C89B6D;  /* soft gold highlight */
-  --color-motif-cream:   #F7F3EE;  /* background ivory */
-  --color-motif-soft:    #EDE3D9;  /* soft beige section */
-  --color-motif-silver:  #CFC6BD;  /* neutral divider */
+  --color-motif-deep:    #4E3B31;  /* deep brown - headings / titles */
+  --color-motif-medium:  #8B6F5A;  /* soft brown - body text */
+  --color-motif-accent:  #C9A989;  /* champagne hover - buttons / highlights */
+  --color-motif-cream:   #E8DCCB;  /* main background */
+  --color-motif-soft:    #D6BFA3;  /* champagne - cards / sections */
+  --color-motif-silver:  #E8DED2;  /* subtle divider / borders */  /* neutral divider */
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --color-background: var(--background);
@@ -158,7 +158,7 @@ html {
 
 /* Lavishly Yours font utility class */
 .lavishly-yours-regular {
-  font-family: "Lavishly Yours", cursive;
+  font-family: var(--font-lavishly-yours, "Lavishly Yours"), cursive;
   font-weight: 400;
   font-style: normal;
 }
@@ -249,7 +249,7 @@ html {
 
 /* Style Script font for hero names */
 .style-script-regular {
-  font-family: "Style Script", cursive;
+  font-family: var(--font-style-script, "Style Script"), cursive;
   font-weight: 400;
   font-style: normal;
 }
@@ -295,7 +295,7 @@ html {
 }
 
 .font-body {
-  font-family: "Crimson Text", serif;
+  font-family: var(--font-crimson-text, "Crimson Text"), serif;
 }
 
 /* Gentle rotation animation for couple photos */

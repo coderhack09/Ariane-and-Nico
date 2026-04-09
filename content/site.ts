@@ -1,11 +1,11 @@
 export const siteConfig = {
   couple: {
-    bride: "Ma. Geraldine B. Divina", //Noenyl Bryle M. Gonzaga
-    brideNickname: "Era", //Ltryl
-    groom: "Vincent Ivan M. Ferrer", //Ltryl B. Benitez
-    groomNickname: "Vince",
-    monogram:"/monogram/newMonogram.png" ,//Ltryl
-    backgroundMusic:"/background_music//Ed Sheeran - The Joker And The Queen (Lyrics) feat. Taylor Swift.mp3"
+    bride: "Ariane Krisette Andaya", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Ariane", //Ltryl
+    groom: "Mark Nicolie Bayonito", //Ltryl B. Benitez
+    groomNickname: "Nico",
+    monogram:"/monogram/monogram.png" ,//Ltryl
+    backgroundMusic:"/background_music/Your Love - Juris  Piano Cover by Gerard Chua.mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScFmpNtAI3vx2FKRaMIE38Kcn0w9ajHtz7CYn6CYgQ8yKqAng/formResponse", //done
@@ -19,16 +19,16 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1NzySlITNcY__DZtbF57EVfVjvy5SCEw35adaofzaioQ/edit?usp=sharing",
   },
   wedding: {
-    date: "April 25, 2026",
+    date: "May 31, 2026",
     time: "1:00 PM",
-    venue: "Sto. Niño De Taguig Parish",
+    venue: "Farm Hills Garden",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
   },
   details: {
     rsvp: {
-      deadline: "April 10, 2026.",
+      deadline: "May 20, 2026.",
       contact: "Ma. Geraldine B. Divina",
       phone: "to be announced",
     },
@@ -48,13 +48,13 @@ export const siteConfig = {
     }
   },
   ceremony: {
-    location: "Sto. Niño De Taguig Parish",
-    venue: "Sampaloc St. Zone 1. Signal Village, Taguig City",
-    date: "April 25, 2026",
-    day: "Saturday",
-    time: "1:00 PM",
-    entourageTime: "12:00 PM",
-    guestsTime: "12:30 PM",
+    location: "Farm Hills Garden",
+    venue: "Brgy. Ulat, Silang, 4118 Cavite",
+    date: "May 31, 2026",
+    day: "Friday",
+    time: "4:00 PM",
+    entourageTime: "3:00 PM",
+    guestsTime: "3:30 PM",
     image: "/Details/ceremony.png",
   },
   reception: {

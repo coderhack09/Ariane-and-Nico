@@ -14,15 +14,14 @@ interface HeroProps {
 // Champagne Gold (buttons)    #D6BFA3
 // Champagne Hover (richer)    #C9A989
 // Borders / Dividers          #F2E4D3
-  // Palette tuned for champagne gold + beige + soft brown
- // Palette tuned to motif: sage green, muted sage, warm ivory, powder blue, steel blue, luxury silver
- const palette = {
-  deep: '--color-motif-deep',    // sage green — primary elegance, headings, borders
-  medium: '--color-motif-medium',  // soft muted sage — secondary text, subtle elements
-  accent: '--color-motif-accent',  // steel blue — deeper accent, hashtag, dividers
-  cream: '--color-motif-cream',   // warm ivory — surfaces, overlays, light text on dark
-  soft: '--color-motif-soft',    // powder blue — highlights, glow accents, progress fill
-  silver: '--color-motif-silver',  // luxury silver — neutral separators, track backgrounds
+// Palette tuned for champagne gold + beige + soft brown
+const palette = {
+  deep: '#4E3B31',
+  softBrown: '#8B6F5A',
+  champagne: '#D6BFA3',
+  champagneHover: '#C9A989',
+  cream: '#F2E4D3',
+  soft: '#F5EFE6',
 };
 
 
@@ -35,11 +34,11 @@ const desktopImages: string[] = [
 ];
 
 const mobileImages: string[] = [
-'/mobile-background/couple (1).jpg',
-  '/mobile-background/couple (2).jpg',
-  '/mobile-background/couple (3).jpg',
-  '/mobile-background/couple (4).jpg',
-  '/mobile-background/couple (5).jpg'
+'/mobile-background/couple (49).JPG',
+  '/mobile-background/couple (50).JPG',
+  '/mobile-background/couple (55).JPG',
+  '/mobile-background/couple (19).JPG',
+  '/mobile-background/couple (18).JPG'
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
@@ -125,7 +124,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, var(--color-motif-deep)13, var(--color-motif-cream)47)'
+            background: 'linear-gradient(to bottom, rgba(214, 191, 163, 0.13), rgba(245, 239, 230, 0.47))'
           }}
         />
         
@@ -133,8 +132,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-              background: 'radial-gradient(ellipse at center, transparent 0%, var(--color-motif-deep)18 100%)'
-            }}
+            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(78, 59, 49, 0.18) 100%)'
+          }}
         />
       </div>
 
@@ -162,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
                 className="object-contain"
                 priority
                 style={{
-                  filter: 'brightness(0) invert(1) drop-shadow(0 4px 16px rgba(255,255,255,0.35))',
+                  filter: 'brightness(0) saturate(100%) invert(100%) drop-shadow(0 8px 20px rgba(214, 191, 163, 0.6))',
                 }}
               />
             </div>
@@ -179,8 +178,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             style={{
               fontFamily: '"Great Vibes", cursive',
               fontWeight: 400,
-              color: 'var(--color-motif-cream)', // #F5EFE6
-              textShadow: '0 0 18px var(--color-motif-cream)',
+              color: palette.soft,
+              textShadow: '0 0 18px rgba(245, 239, 230, 0.9)',
             }}
           >
             You are
@@ -193,8 +192,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             style={{
               fontFamily: '"Cinzel", serif',
               fontWeight: 700,
-              color: 'var(--color-motif-cream)', // #F5EFE6
-              textShadow: '0 0 22px var(--color-motif-cream)95',
+              color: palette.soft,
+              textShadow: '0 0 22px rgba(245, 239, 230, 0.95)',
               letterSpacing: '0.05em',
             }}
           >
@@ -209,23 +208,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
               contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
             style={{
-              backgroundColor: 'var(--color-motif-medium)',
-              borderColor: 'var(--color-motif-medium)',
-              color: 'var(--color-motif-cream)',
+              backgroundColor: palette.champagne,
+              borderColor: palette.champagneHover,
+              color: palette.deep,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-motif-medium)';
+              e.currentTarget.style.backgroundColor = palette.champagneHover;
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.borderColor = 'var(--color-motif-medium)';
+              e.currentTarget.style.borderColor = palette.deep;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--color-motif-deep)';
+              e.currentTarget.style.backgroundColor = palette.champagne;
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = 'var(--color-motif-medium)';
+              e.currentTarget.style.borderColor = palette.champagneHover;
             }}
           >
             <span
-              style={{ fontFamily: '"Cinzel", serif', fontWeight: 500, color: 'var(--color-motif-cream)' }}
+              style={{ fontFamily: '"Cinzel", serif', fontWeight: 500, color: palette.deep }}
             >
               Open Invitation
             </span>

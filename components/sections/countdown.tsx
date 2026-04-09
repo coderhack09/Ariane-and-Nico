@@ -47,14 +47,14 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
       <div className="relative w-full max-w-[88px] sm:max-w-[96px] md:max-w-[110px] lg:max-w-[120px]">
         {/* Main card */}
         <div className="relative rounded-xl sm:rounded-2xl border border-motif-cream/40 bg-motif-cream/15 px-2.5 py-2.5 sm:px-3.5 sm:py-3.5 md:px-4 md:py-4">
-          <div className="relative z-10 flex items-center justify-center text-motif-cream">
+          <div className="relative z-10 flex items-center justify-center text-[#ffffff]">
             <Counter
               value={value}
               places={places}
               fontSize={26}
               padding={4}
               gap={2}
-              textColor="var(--color-motif-cream)"
+              textColor="#ffffff"
               fontWeight={800}
               borderRadius={6}
               horizontalPadding={3}
@@ -67,7 +67,7 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
               digitStyle={{
                 minWidth: "1.15ch",
                 fontFamily: "Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                color: "var(--color-motif-cream)",
+                color: "#ffffff",
               }}
             />
           </div>
@@ -75,7 +75,7 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
       </div>
 
       {/* Label */}
-      <span className="text-[10px] sm:text-xs md:text-sm font-inter font-semibold uppercase tracking-[0.16em] text-motif-cream/90">
+      <span className="text-[10px] sm:text-xs md:text-sm font-inter font-semibold uppercase tracking-[0.16em] text-[#ffffff]/90">
         {label}
       </span>
     </div>
@@ -250,7 +250,7 @@ export function Countdown() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/25" />
         </div>
         
-        <h2 className={`${cinzelRegular.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-motif-cream mb-2 sm:mb-3 md:mb-4`}>
+        <h2 className={`${cinzelRegular.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-[#ffffff] mb-2 sm:mb-3 md:mb-4`}>
           Counting down to our forever
         </h2>
         
@@ -291,11 +291,11 @@ export function Countdown() {
             <div className="relative sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
               <div className="w-full max-w-2xl mx-auto">
                 <div
-                  className={`${cinzel.className} flex flex-col items-center gap-1.5 sm:gap-2.5 md:gap-3 text-motif-cream font-bold`}
+                  className={`${cinzel.className} flex flex-col items-center gap-1.5 sm:gap-2.5 md:gap-3 text-[#ffffff] font-bold`}
                 >
                   {/* Month */}
                   <span
-                    className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-motif-cream"
+                    className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[#ffffff]"
                   >
                     {ceremonyMonth}
                   </span>
@@ -306,7 +306,7 @@ export function Countdown() {
                     <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2.5">
                       <span className="h-[0.5px] flex-1 bg-motif-cream/45" />
                       <span
-                        className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-motif-cream"
+                        className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#ffffff]"
                       >
                         {ceremonyDayShort}
                       </span>
@@ -316,7 +316,7 @@ export function Countdown() {
                     {/* Day number */}
                     <div className="relative flex items-center justify-center px-3 sm:px-4 md:px-5">
                       <span
-                        className={`${cinzel.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] font-bold leading-none tracking-wider text-motif-cream`}
+                        className={`${cinzel.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] font-bold leading-none tracking-wider text-[#ffffff]`}
                       >
                         {ceremonyDayNumber.padStart(2, "0")}
                       </span>
@@ -326,7 +326,7 @@ export function Countdown() {
                     <div className="flex flex-1 items-center gap-1.5 sm:gap-2.5">
                       <span className="h-[0.5px] w-6 sm:w-8 md:w-10 bg-motif-cream/45" />
                       <span
-                        className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-motif-cream"
+                        className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#ffffff]"
                       >
                         {ceremonyTimeDisplay.split(",")[0]}
                       </span>
@@ -336,7 +336,7 @@ export function Countdown() {
 
                   {/* Year */}
                   <span
-                    className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-motif-cream"
+                    className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[#ffffff]"
                   >
                     {ceremonyYear}
                   </span>

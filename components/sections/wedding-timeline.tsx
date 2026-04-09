@@ -26,7 +26,7 @@ const receptionVenue = siteConfig.reception.venue
 
 // Colors sourced from globals.css @theme inline — edit there to update everywhere
 // This section sits on a darker background, so render timeline text/icons in white.
-const TIMELINE_TEXT = "var(--color-motif-cream)"
+const TIMELINE_TEXT = "#ffffff"
 // SVG stroke — CSS vars are not valid SVG attributes
 const TIMELINE_SVG_STROKE = "#FFFFFF"
 // White tint for corner florals — section sits on dark background

@@ -35,8 +35,8 @@ export const StorySection: React.FC<StorySectionProps> = ({
 }) => {
   const isDark = theme === 'dark';
   // Palette lives in globals.css → @theme inline → --color-motif-*
-  const bgColor = isDark ? 'bg-motif-deep' : 'bg-motif-cream relative z-10';
-  const textColor = isDark ? 'text-motif-cream' : 'text-motif-deep';
+  const bgColor = isDark ? 'bg-motif-medium' : 'bg-motif-cream relative z-10';
+  const textColor = isDark ? 'text-motif-cream' : 'text-motif-medium';
   
   // Animation Hook
   const sectionRef = useRef<HTMLDivElement>(null);

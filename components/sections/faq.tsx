@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import Image from "next/image"
 import { Section } from "@/components/section"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
 import { Cormorant_Garamond, Cinzel } from "next/font/google"
 import { siteConfig } from "@/content/site"
 
@@ -17,13 +17,14 @@ const cinzel = Cinzel({
   weight: ["400", "600"],
 })
 
-// Colors sourced from globals.css @theme inline — edit there to update everywhere
+// Champagne Gold + Beige + Soft Brown
+// creates a luxury, elegant, and warm aesthetic
 const palette = {
-  deep:          "var(--color-motif-deep)",
-  softBrown:     "var(--color-motif-medium)",
-  background:    "var(--color-motif-cream)",
-  champagneGold: "var(--color-motif-silver)",
-  champagneLight:"var(--color-motif-cream)",
+  deep: "#4E3B31",            // deep brown
+  softBrown: "#8B6F5A",       // soft brown
+  background: "#E8DCCB",      // beige background
+  champagneGold: "#D6BFA3",   // champagne
+  champagneLight: "#F2E4D3",  // light champagne / paper
 } as const
 
 interface FAQItem {
@@ -32,81 +33,147 @@ interface FAQItem {
 }
 
 const faqItems: FAQItem[] = [
+  // {
+  //   question: "When is the wedding?",
+  //   answer:
+  //     `Our wedding will be held on ${siteConfig.ceremony.date} (${siteConfig.ceremony.day}). The ceremony will begin promptly at ${siteConfig.ceremony.time}, and we kindly ask guests to arrive by ${siteConfig.ceremony.guestsTime} to help us begin on time. The reception will follow at ${siteConfig.reception.time}.`,
+  // },
+  // {
+  //   question: "What time should I arrive for the ceremony?",
+  //   answer:
+  //     `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive 30–45 minutes earlier to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
+  // },
+  // {
+  //   question: "Where will the ceremony and reception take place?",
+  //   answer:
+  //     `The ceremony will be held at ${siteConfig.ceremony.location}. The reception will follow at ${siteConfig.reception.location}. You can find detailed directions, addresses, and maps in the Details section above.`,
+  // },
+  // {
+  //   question: "Is there an entourage call time?",
+  //   answer:
+  //     `Yes. Our entourage is requested to arrive by ${siteConfig.ceremony.entourageTime} so we can prepare and settle before the ceremony begins promptly at ${siteConfig.ceremony.time}.`,
+  // },
+  // {
+  //   question: "How do I RSVP?",
+  //   answer:
+  //     `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list, confirm your attendance, and let us know if you'll be bringing companions. We kindly ask for your response on or before ${siteConfig.details.rsvp.deadline} to help us prepare for the big day. For any questions, please contact ${siteConfig.details.rsvp.contact} at ${siteConfig.details.rsvp.phone}.`,
+  // },
+  // {
+  //   question: "Can I bring a guest or a date?",
+  //   answer:
+  //     "If your invitation includes a plus one or lists your guest’s name, you are welcome to bring them. Otherwise, we would love to keep our wedding intimate and reserved for close family and friends, so we kindly ask guests not to bring additional companions.",
+  // },
+  // {
+  //   question: "Are children allowed at the event?",
+  //   answer:
+  //     "As much as we adore your little ones, we have decided to keep our celebration an adult-only event to maintain an intimate and relaxed atmosphere for everyone.\n\nChildren who are part of the entourage are, of course, included. Otherwise, unless your child’s name is specifically listed on your invitation and included in your RSVP, we kindly ask that only adults attend.\n\nWe truly appreciate your understanding and can’t wait to celebrate this special day with you.",
+  // },
+  // {
+  //   question: "Is there a dress code?",
+  //   answer:
+  //     `Wedding attire details are in the Guest Information section above ${siteConfig.dressCode.note}.`,
+  // },
+  // {
+  //   question: "Can I sit anywhere at the reception?",
+  //   answer:
+  //     "Please don't. We kindly ask our guests to follow the seating arrangement prepared for the reception.\n\nA great deal of thought and care went into planning the seating so that everyone will feel comfortable and be seated with friends, family, or guests who share similar connections. Each seat was thoughtfully arranged with every guest in mind. Our reception team will gladly assist you in finding your assigned table.",
+  // },
+  // {
+  //   question: "Is there parking available?",
+  //   answer:
+  //     "Yes, parking is available at both venues. Please follow the parking signs and instructions from our venue coordinators.",
+  // },
+  // {
+  //   question: "Will there be a wedding gift registry?",
+  //   answer:
+  //     "With all that we have, we are truly blessed. Your presence and prayers are what we request most. However, if you desire to give nonetheless, a monetary gift to help us begin our new life together would be humbly appreciated. You can find our gift registry information in the Gift Guide section.",
+  // },
+  // {
+  //   question: "Unplugged Ceremony",
+  //   answer:
+  //     "EYES UP, PHONES DOWN, HEARTS OPEN.\n\nThe greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!\n\nOur professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.",
+  // },
+  // {
+  //   question: "Can I take photos or videos during the reception?",
+  //   answer:
+  //     "Yes! While our I DO’s will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.",
+  // },
+  // {
+  //   question: "What should I do if I can’t make it?",
+  //   answer:
+  //     "Your presence will truly be missed, but we completely understand.\n\nPlease kindly let us know through RSVP as soon as possible so we may adjust arrangements accordingly.",
+  // },
+  // {
+  //   question: "I said “No” to RSVP but my plans changed. Can I still attend?",
+  //   answer:
+  //     "Please check with us first before making arrangements. Due to limited seating and a carefully planned guest list, attendance cannot be guaranteed without prior confirmation.",
+  // },
+  // {
+  //   question: "When is the appropriate time to leave?",
+  //   answer:
+  //     "It took us some time to plan for a heartfelt wedding that everyone would hopefully enjoy. We humbly request that you celebrate with us until the program ends. Please don't eat and run! Let's laugh, take pictures, sing, and have fun!",
+  // },
+  // {
+  //   question: "What if I have dietary restrictions or allergies?",
+  //   answer:
+  //     "Please let us know about any dietary restrictions or allergies when you RSVP. We want to ensure everyone can enjoy the celebration comfortably.",
+  // },
+  // {
+  //   question: "How can I help the couple have a great time during their wedding?",
+  //   answer:
+  //     "• Pray with us for favorable weather and the continuous blessings of our Lord as we enter this new chapter of our lives as husband and wife.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress appropriately and follow our wedding motif.\n\n• Be on time.\n\n• Follow the seating arrangement in the reception.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!",
+  // },
   {
-    question: "When is the wedding?",
-    answer:
-    `Our wedding will be held on ${siteConfig.ceremony.date} (${siteConfig.ceremony.day})`
+    question: `WHAT TIME SHOULD I ARRIVE FOR THE CEREMONY?`,
+    answer: `Our ceremony will begin promptly at 4:00 PM. We kindly ask guests to arrive 30-45 minutes earlier before the ceremony starts. This will give you enough time to find parking, settle in, and be part of our special moment from the very beginning.`,
   },
   {
-    question: "What time should I arrive for the ceremony?",
-    answer:
-      `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive 30–45 minutes earlier to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
+    question: `HOW DO I RSVP?`,
+    answer: `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. We kindly ask for your response on or before April 15, 2026 to help us prepare for the big day.`,
   },
   {
-    question: "Where will the ceremony and reception take place?",
-    answer:
-    `The ceremony and reception will be held at ${siteConfig.ceremony.location}, ${siteConfig.ceremony.venue}. You can find detailed directions, addresses, and maps in the Details Section above`
+    question: `CAN I BRING A PLUS ONE OR MY KIDS?`,
+    answer: `As much as we’d love to accommodate everyone, but due to limited space, We kindly ask that only the guests listed on the invitation join us. Children who are part of the entourage are, of course, included. Otherwise, unless your child’s name is specifically listed on your invitation and included in your RSVP, we kindly ask that only adults attend.`,
   },
   {
-    question: "Is there an entourage call time?",
-    answer:
-    `Yes. We request our Principal Sponsors to arrive at ${siteConfig.ceremony.entourageTime} so we can prepapre and settle before the ceremony begins`
+    question: `CAN I TAKE PHOTOS AND VIDEOS DURING CEREMONY?`,
+    answer: `
+      EYES UP, PHONES DOWN, HEARTS OPEN. \n\n
+      The greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!
+      Our professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.
+      \n\n
+      
+Our professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.
+
+    `,
   },
   {
-    question: "How do I RSVP?",
-    answer:
-    `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. Due Date of final RSVP is on ${siteConfig.details.rsvp.deadline}. For any questions, please contact ${siteConfig.details.rsvp.contact} via Messenger`
+    question: `AM I ALLOWED TO TAKE PICTURES AND VIDEOS DURING THE RECEPTION?`,
+    answer: `Yes! While our I DO’s will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.`,
   },
   {
-    question: "Can I sit anywhere at the reception?",
-    answer:
-      "Please don't. We kindly ask our guests to follow the seating arrangement prepared for the reception.\n\nA great deal of thought and care went into planning the seating so that everyone will feel comfortable and be seated with friends, family, or guests who share similar connections. Each seat was thoughtfully arranged with every guest in mind. Our reception team will gladly assist you in finding your assigned table.",
+    question: `CAN I SIT ANYWHERE AT THE RECEPTION?`,
+    answer: `Please don't. We kindly ask our guests to follow the seating arrangement prepared for the reception. A great deal of thought and care went into planning the seating so that everyone will feel comfortable and be seated with friends, family, or guests who share similar connections. Each seat was thoughtfully arranged with every guest in mind. Our reception team will gladly assist you in finding your assigned table.`,
   },
   {
-    question: "Is there parking available?",
-    answer:
-      "Yes, parking is available at the venue, and parking attendants, along with our coordinators, will assist you on the day",
+    question: `WILL THERE BE A GIFT REGISTRY?`,
+    answer: `We have chosen not to have a wedding gift registry. However, if you feel inclined to give, monetary gifts for our future would be sincerely appreciated.`,
   },
   {
-    question: "Will there be a wedding gift registry?",
-    answer:
-      "With all that we have, we are truly blessed. Your presence and prayers are what we request most. However, if you desire to give nonetheless, a monetary gift to help us begin our new life together would be humbly appreciated. You can find our gift registry information in the Gift Guide section.",
+    question: `WHEN IS THE APPROPRIATE TIME TO LEAVE?`,
+    answer: `This event took us months to plan, and we want to celebrate it with the people that are very dear to our hearts. We would appreciate it if you can celebrate with us until the end of the program!`,
   },
   {
-    question: "Unplugged Ceremony",
-    answer:
-      "EYES UP, PHONES DOWN, HEARTS OPEN.\n\nThe greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!\n\nOur professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.",
+    question: `IS THERE PARKING AVAILABLE?`,
+    answer: `Yes, parking is available. The venue has ample parking space for everyone. Please just follow the parking signs and the instructions provided by our venue coordinators.`,
   },
   {
-    question: "Can I take photos or videos during the reception?",
-    answer:
-      "Yes! While our I DO’s will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.",
+    question: `WHAT SHOULD I DO IF I CAN’T MAKE IT?`,
+    answer: `Your presence will truly be missed, but we completely understand. Please kindly let us know through RSVP as soon as possible so we may adjust arrangements accordingly. \n
+`,
   },
-  {
-    question: "What should I do if I can’t make it?",
-    answer:
-      "Your presence will truly be missed, but we completely understand.\n\nPlease kindly let us know through RSVP as soon as possible so we may adjust arrangements accordingly.",
-  },
-  {
-    question: "I said “No” to RSVP but my plans changed. Can I still attend?",
-    answer:
-      "Please check with us first before making arrangements. Due to limited seating and a carefully planned guest list, attendance cannot be guaranteed without prior confirmation.",
-  },
-  {
-    question: "When is the appropriate time to leave?",
-    answer:
-      "It took us some time to plan for a heartfelt wedding that everyone would hopefully enjoy. We humbly request that you celebrate with us until the program ends. Please don't eat and run! Let's laugh, take pictures, sing, and have fun!",
-  },
-  {
-    question: "What if I have dietary restrictions or allergies?",
-    answer:
-      "Please let us know about any dietary restrictions or allergies when you RSVP. We want to ensure everyone can enjoy the celebration comfortably.",
-  },
-  {
-    question: "How can I help the couple have a great time during their wedding?",
-    answer:
-      "• Pray with us for favorable weather and the continuous blessings of our Lord as we enter this new chapter of our lives as husband and wife.\n\n• RSVP as soon as your schedule is cleared.\n\n• Dress appropriately and follow our wedding motif.\n\n• Be on time.\n\n• Follow the seating arrangement in the reception.\n\n• Stay until the end of the program.\n\n• Join the activities and enjoy!",
-  },
+
+
 ]
 
 export function FAQ() {
@@ -124,14 +191,14 @@ export function FAQ() {
         <div
           className="absolute inset-0 opacity-[0.24]"
           style={{
-            background: 'linear-gradient(150deg, var(--color-motif-cream) 0%, color-mix(in srgb, var(--color-motif-silver) 14%, transparent) 35%, color-mix(in srgb, var(--color-motif-medium) 6%, transparent) 70%, color-mix(in srgb, var(--color-motif-deep) 3%, transparent) 100%)',
+            background: `linear-gradient(150deg, ${palette.champagneLight} 0%, ${palette.champagneGold}24 35%, ${palette.softBrown}10 70%, ${palette.deep}08 100%)`,
           }}
         />
         {/* Glow behind FAQ card */}
         <div
           className="absolute inset-0 opacity-[0.18]"
           style={{
-            background: 'radial-gradient(circle at 50% 10%, var(--color-motif-silver) 0%, transparent 55%)',
+            background: `radial-gradient(circle at 50% 10%, ${palette.champagneGold} 0%, transparent 55%)`,
           }}
         />
         {/* Subtle vertical texture */}
@@ -147,27 +214,27 @@ export function FAQ() {
       <Section id="faq" className="relative z-10 py-12 md:py-16 lg:py-20 overflow-hidden">
       {/* Corner decorations — soft brown tint */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
       </div>
 
       {/* Section Header */}
       <div className="relative z-30 text-center mb-6 sm:mb-9 md:mb-12 px-3 sm:px-4">
-        <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`} style={{ color: palette.softBrown }}>
+        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base uppercase tracking-[0.28em] mb-2`} style={{ color: palette.softBrown }}>
           Answers for our celebration day
         </p>
-        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep, textShadow: "0 2px 10px rgba(91,102,85,0.22)" }}>
+        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep, textShadow: "0 2px 10px rgba(78,59,49,0.22)" }}>
           Frequently Asked Questions
         </h2>
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`} style={{ color: palette.softBrown }}>
+        <p className={`${cormorant.className} text-sm sm:text-base md:text-lg font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`} style={{ color: palette.softBrown }}>
           Helpful notes so you can simply arrive, celebrate, and enjoy this new chapter with us.
         </p>
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
@@ -184,10 +251,11 @@ export function FAQ() {
       {/* FAQ content — cream container with motif accents */}
       <div className="relative z-30 max-w-4xl mx-auto px-3 sm:px-5">
         <div
-          className="relative backdrop-blur-md rounded-xl sm:rounded-2xl overflow-hidden shadow-lg"
+          className="relative backdrop-blur-md rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg"
           style={{
-            backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 94%, transparent)',
-            boxShadow: '0 4px 28px color-mix(in srgb, var(--color-motif-deep) 10%, transparent)',
+            backgroundColor: `${palette.champagneLight}f0`,
+            borderColor: `${palette.champagneGold}70`,
+            boxShadow: `0 4px 28px ${palette.deep}18`,
           }}
         >
           <div className="relative p-2.5 sm:p-4 md:p-5 lg:p-6">
@@ -200,14 +268,13 @@ export function FAQ() {
                     key={index}
                     className="rounded-xl sm:rounded-2xl border overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md"
                     style={{
-                      backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 96%, white)',
-                      // borderColor: 'color-mix(in srgb, var(--color-motif-silver) 33%, transparent)',
-                      boxShadow: '0 4px 28px color-mix(in srgb, var(--color-motif-deep) 10%, transparent)',
+                      backgroundColor: "rgba(255,255,255,0.96)",
+                      borderColor: `${palette.champagneGold}55`,
                     }}
                   >
                     <button
                       onClick={() => toggleItem(index)}
-                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-motif-deep transition-colors"
+                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#45301F] transition-colors"
                       aria-expanded={isOpen}
                       aria-controls={contentId}
                     >
@@ -235,7 +302,7 @@ export function FAQ() {
                       <div className="overflow-hidden">
                         <div
                           className="px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 border-t"
-                          style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 90%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)' }}
+                          style={{ backgroundColor: `${palette.background}e6`, borderColor: `${palette.champagneGold}40` }}
                         >
                           {item.answer.includes("[RSVP_LINK]") ? (
                             <p className={`${cormorant.className} font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`} style={{ color: palette.deep }}>

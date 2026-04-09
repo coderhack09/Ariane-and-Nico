@@ -12,8 +12,15 @@ const cormorant = Cormorant_Garamond({
   weight: ["400"],
 })
 
-// Palette lives in globals.css → @theme inline → --color-motif-*
-// Edit there once to update every component.
+const palette = {
+  champagneGold: "#D6BFA3",
+  softBeige: "#F5EFE6",
+  warmBeige: "#E8DCCB",
+  softBrown: "#8B6F5A",
+  deepBrown: "#4E3B31",
+  champagneLight: "#F2E4D3",
+  navBg: "#C9A989",
+}
 
 
 const navLinks = [
@@ -88,18 +95,27 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
-        isScrolled
-          ? "bg-motif-deep backdrop-blur-xl shadow-[0_10px_40px_rgba(91,102,85,0.35)] border-b border-motif-medium/70"
-          : "bg-motif-deep/92 backdrop-blur-lg border-b border-motif-medium/60"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out`}
+      style={{
+        backgroundColor: palette.navBg,
+        backdropFilter: isScrolled ? "blur(24px)" : "blur(16px)",
+        boxShadow: isScrolled ? "0 10px 40px rgba(155,106,65,0.35)" : undefined,
+        borderBottom: isScrolled
+          ? `1px solid ${palette.champagneLight}B2`
+          : `1px solid ${palette.champagneGold}99`,
+      }}
     >
       {/* Elegant glow effect when scrolled */}
       {isScrolled && (
-        <div className="absolute inset-0 bg-gradient-to-r from-motif-cream/8 via-motif-cream/4 to-motif-cream/8 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-white/10 pointer-events-none" />
       )}
       {/* Subtle texture overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-motif-cream/5 via-transparent to-motif-cream/8 pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(to bottom, ${palette.softBeige}0D, transparent, ${palette.softBeige}14)`,
+        }}
+      />
       
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 relative">
         <div className="flex justify-between items-center h-12 sm:h-14 md:h-16">
@@ -117,7 +133,10 @@ export function Navbar() {
             </div>
             
             {/* Subtle background glow on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-motif-cream/30 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
+            <div
+              className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"
+              style={{ background: `linear-gradient(to right, transparent, ${palette.softBeige}4D, transparent)` }}
+            />
           </Link>
 
           <div className="hidden md:flex gap-1 items-center">
@@ -127,26 +146,68 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 lg:px-4 py-2 text-xs lg:text-sm ${cormorant.className} font-medium rounded-lg transition-all duration-500 relative group ${
+                  className={`px-3 lg:px-4 py-2 text-xs lg:text-sm ${cormorant.className} font-medium rounded-lg transition-all duration-500 relative group`}
+                  style={
                     isActive
-                      ? "text-motif-deep bg-motif-cream/95 backdrop-blur-md shadow-[0_6px_18px_rgba(91,102,85,0.2)] border border-motif-silver/60"
-                      : "text-motif-cream/95 hover:text-motif-deep hover:bg-motif-cream/95 hover:border hover:border-motif-silver/60 hover:shadow-[0_6px_18px_rgba(91,102,85,0.15)] hover:scale-105 active:scale-95 bg-transparent border border-transparent"
-                  }`}
+                      ? {
+                          color: palette.deepBrown,
+                          backgroundColor: `${palette.softBeige}F2`,
+                          backdropFilter: "blur(12px)",
+                          boxShadow: "0 6px 18px rgba(0,0,0,0.15)",
+                          border: `1px solid ${palette.softBeige}`,
+                        }
+                      : {
+                          color: "rgba(255,255,255,0.95)",
+                          backgroundColor: "transparent",
+                          border: "1px solid transparent",
+                        }
+                  }
+                  onMouseEnter={e => {
+                    if (!isActive) {
+                      const el = e.currentTarget as HTMLAnchorElement
+                      el.style.color = palette.deepBrown
+                      el.style.backgroundColor = `${palette.softBeige}F2`
+                      el.style.border = `1px solid ${palette.softBeige}CC`
+                      el.style.boxShadow = "0 6px 18px rgba(0,0,0,0.1)"
+                      el.style.transform = "scale(1.05)"
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!isActive) {
+                      const el = e.currentTarget as HTMLAnchorElement
+                      el.style.color = "rgba(255,255,255,0.95)"
+                      el.style.backgroundColor = "transparent"
+                      el.style.border = "1px solid transparent"
+                      el.style.boxShadow = ""
+                      el.style.transform = ""
+                    }
+                  }}
                 >
                   {link.label}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-motif-soft via-motif-accent to-motif-soft transition-all duration-500 rounded-full ${
-                      isActive
-                        ? "w-full shadow-[0_0_10px_var(--color-motif-soft)]"
-                        : "w-0 group-hover:w-full group-hover:shadow-[0_0_8px_var(--color-motif-soft)]"
+                    className={`absolute bottom-0 left-0 h-0.5 transition-all duration-500 rounded-full ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
+                    style={{
+                      background: `linear-gradient(to right, ${palette.softBeige}, ${palette.softBeige}, ${palette.softBeige})`,
+                      boxShadow: isActive ? `0 0 10px ${palette.softBeige}` : undefined,
+                    }}
                   />
                   {/* Active indicator dot */}
                   {isActive && (
-                    <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-motif-soft animate-pulse shadow-[0_0_6px_var(--color-motif-soft)]" />
+                    <div
+                      className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full animate-pulse"
+                      style={{
+                        backgroundColor: palette.softBeige,
+                        boxShadow: `0 0 6px ${palette.softBeige}`,
+                      }}
+                    />
                   )}
                   {/* Subtle accent on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-motif-cream/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  <div
+                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                    style={{ background: `linear-gradient(to bottom right, transparent, ${palette.softBeige}33, transparent)` }}
+                  />
                 </Link>
               )
             })}
@@ -155,18 +216,21 @@ export function Navbar() {
           <div className="md:hidden flex items-center h-full">
             {/* Decorative halo to improve tap target and visual affordance */}
             <div className="relative">
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-motif-cream/20 via-motif-cream/10 to-transparent blur-md pointer-events-none" />
+              <div
+                className="absolute -inset-1 rounded-full blur-md pointer-events-none"
+                style={{ background: `linear-gradient(to bottom right, ${palette.softBeige}33, ${palette.softBeige}1A, transparent)` }}
+              />
               <StaggeredMenu
                 position="left"
                 items={menuItems}
                 socialItems={[]}
                 displaySocials={false}
                 displayItemNumbering={true}
-                menuButtonColor="var(--color-motif-cream)"
-                openMenuButtonColor="var(--color-motif-deep)"
+                menuButtonColor={palette.softBeige}
+                openMenuButtonColor={palette.deepBrown}
                 changeMenuColorOnOpen={true}
-                colors={["var(--color-motif-deep)", "var(--color-motif-deep)", "var(--color-motif-deep)", "var(--color-motif-cream)", "var(--color-motif-cream)"]}
-                accentColor="var(--color-motif-soft)"
+                colors={[palette.deepBrown, palette.deepBrown, palette.deepBrown, palette.softBeige, palette.softBeige]}
+                accentColor="#FFFFFF"
                 isFixed={true}
                 onMenuOpen={() => {}}
                 onMenuClose={() => {}}

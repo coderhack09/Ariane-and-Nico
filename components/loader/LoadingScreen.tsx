@@ -11,13 +11,13 @@ interface LoadingScreenProps {
 
 // Countdown boxes with color photos - numbers show days, hours, minutes
 const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/box1.jpg' },
-  { src: '/frontboxes/box-2.jpg' },
-  { src: '/frontboxes/box-3.jpg' },
+  { src: '/frontboxes/box (1).JPG' },
+  { src: '/frontboxes/box (2).JPG' },
+  { src: '/frontboxes/box (3).JPG' },
 ];
 
-const MAIN_BW_IMAGE = '/frontboxes/phone.jpg';
-const DESKTOP_BW_IMAGE = '/frontboxes/desktop.jpg';
+const MAIN_BW_IMAGE = '/frontboxes/newMobile.JPG';
+const DESKTOP_BW_IMAGE = '/frontboxes/desktop.JPG';
 const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
 const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
 const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
@@ -38,18 +38,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     return { days, hours, minutes };
   }, [now]);
-
-  const countdownText = useMemo(() => {
-    const { days } = countdown;
-    if (days === 0) return 'TODAY IS THE DAY';
-    if (days === 1) return 'ONE DAY TO GO';
-    if (days >= 28 && days <= 31) return 'ONE MONTH TO GO';
-    if (days >= 58 && days <= 62) return 'TWO MONTHS TO GO';
-    if (days >= 88 && days <= 93) return 'THREE MONTHS TO GO';
-    if (days >= 118 && days <= 123) return 'FOUR MONTHS TO GO';
-    if (days >= 148 && days <= 153) return 'FIVE MONTHS TO GO';
-    return `${days} DAYS TO GO`;
-  }, [countdown.days]);
 
   // Wedding date derived from siteConfig.wedding.date
   const debutDateObj = new Date(siteConfig.wedding.date);
@@ -103,7 +91,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
-  const hashtag = siteConfig.snapShare.hashtag[0];
   const productionCredit = '';
 
 
@@ -162,57 +149,35 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Top: headline + hashtag + countdown (readable over photo, no container) */}
         <div className="flex flex-col items-center justify-center w-full pt-12 sm:pt-16 md:pt-24 px-4 sm:px-6 flex-shrink-0">
           <div className="w-full max-w-lg mx-auto">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <div className="flex flex-col items-center mb-4 sm:mb-5">
               <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-cream)' }}
-              />
-              <p className="text-center">
-                <span
-                  className="inline-block text-[10px] sm:text-xs tracking-[0.28em] sm:tracking-[0.36em] font-[family-name:'Cinzel', serif] uppercase px-3 py-1.5 rounded-full backdrop-blur-sm border"
-                  style={{
-                    color: 'var(--color-motif-deep)',
-                    backgroundColor: 'var(--color-motif-cream)',
-                    borderColor: 'var(--color-motif-deep)',
-                    textShadow: '0 1px 0 palette.soft',
-                  }}
-                >
-                  Your invitation is on its way
-                </span>
-              </p>
-              <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-accent)' }}
-              />
-            </div>
-
-            <p className="text-center mb-4 sm:mb-5">
-              <span
-                className="inline-block text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-[family-name:'Cinzel', serif] px-3 py-1.5 rounded-full backdrop-blur-sm border"
                 style={{
-                  color: 'var(--color-motif-deep)',
-                  backgroundColor: 'var(--color-motif-cream)',
-                  borderColor: 'var(--color-motif-deep)',
-                  textShadow: '0 1px 0 palette.soft',
+                  fontFamily: 'var(--font-brittany)',
+                  color: 'var(--color-motif-cream)',
+                  fontSize: 'clamp(2.8rem, 10vw, 5.5rem)',
+                  lineHeight: 1.1,
+                  textShadow: '0 2px 18px rgba(0,0,0,0.55), 0 0 32px var(--color-motif-accent)',
                 }}
               >
-                {hashtag}
+                Save the Date
               </span>
-            </p>
-
-            <h2 className="text-center">
               <span
-                className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase max-w-md mx-auto leading-tight px-2"
+                className="text-center whitespace-nowrap mt-3"
                 style={{
                   fontFamily: '"Cinzel", serif',
                   color: 'var(--color-motif-cream)',
-                  textShadow:
-                    '0 2px 14px rgba(0,0,0,0.55), 0 0 22px var(--color-motif-accent), 0 0 44px var(--color-motif-deep)',
+                  fontSize: 'clamp(1.1rem, 5vw, 1.75rem)',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.6)',
+                  opacity: 0.92,
+                  fontWeight: 700,
                 }}
               >
-                {countdownText}
+                {countdown.days} more days to go
               </span>
-            </h2>
+            </div>
+
           </div>
         </div>
 
@@ -253,10 +218,10 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 {/* Bold debut date number + label - centered at bottom */}
                 <div className="absolute bottom-2 inset-x-0 sm:bottom-3 flex flex-col items-center">
                   <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                    className="text-3xl sm:text-2xl md:text-4xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] text-center"
                     style={{
                       fontFamily: 'var(--font-granika), sans-serif',
-                      color: 'var(--color-motif-soft)',
+                      color: 'var(--color-motif-cream)',
                     }}
                   >
                     {countdownNumbers[i]}
@@ -271,45 +236,63 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Bottom: Names + production credit + progress bar */}
-        <div className="flex flex-col items-center justify-center w-full py-6 sm:py-8 px-4 flex-shrink-0">
+        <div className="flex flex-col items-center w-full pt-3 pb-6 sm:pb-8 px-6 flex-shrink-0 gap-1">
           <p
-            className="text-center text-sm sm:text-base tracking-[0.18em] uppercase text-[family-name:var(--font-crimson)] mb-2"
-            style={{ color: 'var(--color-motif-cream)' }}
+            className="text-[10px] sm:text-xs tracking-[0.3em] uppercase"
+            style={{
+              fontFamily: '"Cinzel", serif',
+              color: 'var(--color-motif-cream)',
+              opacity: 0.7,
+            }}
           >
             Almost ready for
           </p>
           <div
-            className="text-center text-2xl sm:text-3xl md:text-4xl mb-2"
+            className="text-xl sm:text-2xl md:text-3xl tracking-[0.12em]"
             style={{
               fontFamily: '"Cinzel", serif',
               color: 'var(--color-motif-cream)',
-              textShadow: '0 2px 10px var(--color-motif-deep)35',
+              textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+              fontWeight: 600,
             }}
           >
             {coupleNames}
           </div>
           {productionCredit && (
             <p
-              className="text-[10px] sm:text-xs font-sans tracking-wider"
-              style={{ color: 'var(--color-motif-soft)' }}
+              className="text-[10px] font-sans tracking-wider"
+              style={{ color: 'var(--color-motif-cream)', 
+                // opacity: 0.7 
+              }}
             >
               {productionCredit}
             </p>
           )}
+
+          {/* Divider */}
+          <div
+            className="w-16 h-px my-2"
+            style={{ backgroundColor: 'var(--color-motif-cream)', opacity: 0.3 }}
+          />
+
           {/* Preparing message + progress bar */}
           <p
-            className="text-xs sm:text-sm tracking-[0.22em] mt-6 mb-3 font-[family-name:var(--font-crimson)] uppercase font-semibold"
-            style={{ color: 'var(--color-motif-cream)', textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}
+            className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase mb-2"
+            style={{
+              fontFamily: '"Cinzel", serif',
+              color: 'var(--color-motif-cream)',
+              // opacity: 0.65,
+            }}
           >
             Crafting your invitation experience
           </p>
-          <div className="w-full max-w-xs mx-auto">
+          <div className="w-full max-w-[200px] sm:max-w-xs mx-auto">
             <div
-              className="h-1.5 rounded-full overflow-hidden"
-              style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}
+              className="h-[3px] rounded-full overflow-hidden"
+              style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
             >
               <div
-                className="h-full rounded-full transition-all duration-300 ease-out shadow-[0_0_12px_rgba(255,255,255,0.7)]"
+                className="h-full rounded-full transition-all duration-300 ease-out shadow-[0_0_8px_rgba(255,255,255,0.6)]"
                 style={{
                   width: `${progress}%`,
                   backgroundColor: 'var(--color-motif-accent)',

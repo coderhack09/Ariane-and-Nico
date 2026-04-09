@@ -1,20 +1,35 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Section } from "@/components/section"
 import { Cinzel } from "next/font/google"
 import { siteConfig } from "@/content/site"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
   weight: ["400", "600"],
 })
 
-const GCASH_QR = Object.values(siteConfig?.giftRegistry ?? {})
+const GCASH_QR = [
+  {
+    id: "BDO",
+    src: "/QR/pleaseProvideQR.png",
+    label: "BDO",
+    accountNumber: "To Follow",
+  },
+  {
+    id: "Gcash",
+    src: "/QR/pleaseProvideQR.png",
+    label: "GCash",
+    accountNumber: "to Follow",
+  },
+] as const
+
+type ActiveQrId = (typeof GCASH_QR)[number]["id"]
 
 export function Registry() {
-  const [activeQr, setActiveQr] = useState(GCASH_QR[0]?.id ?? "")
+  const [activeQr, setActiveQr] = useState<ActiveQrId>("BDO")
   const activeItem = GCASH_QR.find((i) => i.id === activeQr) ?? GCASH_QR[0]
 
   return (
@@ -31,11 +46,11 @@ export function Registry() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/60" />
         </div>
         
-        <h2 className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-motif-cream mb-2 sm:mb-3 md:mb-4">
+        <h2 className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#ffffff] mb-2 sm:mb-3 md:mb-4">
           Gift Guide
         </h2>
         
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-motif-cream/90 font-light max-w-2xl mx-auto leading-relaxed px-2">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffffff] font-light max-w-2xl mx-auto leading-relaxed px-2">
         With hearts full of gratitude, we ask only for your presence and prayers as we celebrate together. Should you wish to bless us further, a gift toward our future would be a blessing we will always treasure. 
 
         </p>
@@ -50,12 +65,12 @@ export function Registry() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
   {/* GCASH QR toggle */}
   <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
-        <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-normal text-motif-cream text-center mb-4 sm:mb-6`}>
-          GCASH
+        <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-normal text-[#ffffff] text-center mb-4 sm:mb-6`}>
+          {activeItem.label}
         </h3>
         <div className="flex flex-col items-center gap-4 sm:gap-6">
           {/* Toggle buttons */}
-          <div className="inline-flex rounded-lg border border-motif-cream/40 bg-motif-cream/5 p-1">
+          <div className="inline-flex rounded-lg border border-[#ffffff]/40 bg-[#ffffff]/5 p-1">
             {GCASH_QR.map((item) => (
               <button
                 key={item.id}
@@ -63,8 +78,8 @@ export function Registry() {
                 onClick={() => setActiveQr(item.id)}
                 className={`px-4 sm:px-6 py-2 rounded-md text-sm font-medium transition-all ${
                   activeQr === item.id
-                    ? "bg-motif-cream/20 text-motif-cream"
-                    : "text-motif-cream/80 hover:text-motif-cream hover:bg-motif-cream/10"
+                    ? "bg-[#ffffff]/20 text-[#ffffff]"
+                    : "text-[#ffffff]/80 hover:text-[#ffffff] hover:bg-[#ffffff]/10"
                 }`}
               >
                 {item.label}
@@ -74,7 +89,7 @@ export function Registry() {
           {/* Active QR image */}
           <div className="flex flex-col items-center">
             <div className="relative w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-xl overflow-hidden bg-white shadow-lg">
-            <CloudinaryImage
+            <Image
               src={activeItem.src}
               alt={`QR code - ${activeItem.label}`}
               fill
@@ -83,10 +98,10 @@ export function Registry() {
             />
           </div>
             <div className="mt-3 sm:mt-4 w-full max-w-md text-center">
-              <p className="text-[11px] sm:text-xs tracking-[0.18em] uppercase text-motif-cream/70">
+              <p className="text-xs sm:text-sm tracking-[0.18em] uppercase text-[#ffffff]/70">
                 Account Number
               </p>
-              <p className={`${cinzel.className} mt-1 text-sm sm:text-base text-motif-cream drop-shadow-sm`}>
+              <p className={`${cinzel.className} mt-1 text-base sm:text-lg text-[#ffffff] drop-shadow-sm`}>
                 {activeItem.accountNumber}
               </p>
             </div>
@@ -96,11 +111,11 @@ export function Registry() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center">
-          <p className="text-xs sm:text-sm text-motif-cream/90 italic">
+          <p className="text-xs sm:text-sm text-[#ffffff]/90 italic">
             Thank you from the bottom of our hearts.
           </p>
         </div>
-        <p className="text-xs sm:text-sm text-motif-cream/90 italic text-center">
+        <p className="text-xs sm:text-sm text-[#ffffff]/90 italic text-center">
             With love,
             <br />
             {siteConfig.couple.brideNickname} and {siteConfig.couple.groomNickname}

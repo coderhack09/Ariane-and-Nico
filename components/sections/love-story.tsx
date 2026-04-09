@@ -4,8 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { StorySection } from '@/components/StorySection';
 import { Cinzel } from "next/font/google";
-import { siteConfig } from '@/content/site';
-
 const cinzel = Cinzel({
   subsets: ["latin"],
   weight: "400",
@@ -22,10 +20,10 @@ export function LoveStory() {
       <div className="text-center text-motif-medium z-0 relative px-4">
         <div className="w-12 sm:w-16 h-[1px] bg-motif-silver mx-auto mb-4 sm:mb-6 opacity-60"></div>
         <h1 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl uppercase tracking-[0.14em] sm:tracking-[0.18em] font-normal leading-tight text-motif-deep mt-8`}>
-        Love Story
+        Where Forever Began
         </h1>
         <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-[0.14em] sm:tracking-[0.18em] font-normal leading-tight text-motif-medium mb-1`}>
-        From Paper to Forever
+        A love that grew quietly, deeply, and right on time.
         </p>
       </div>
 
@@ -34,22 +32,15 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isFirst={true}
-        title="The Unexpected Beginning"
-        imageSrc="/mobile-background/couple (1).jpg"
+        // title="The Unexpected Beginning"
+        imageSrc="/mobile-background/couple (18).JPG"
         text={
           <>
             <p className="mb-4">
-            Vince and Era’s story didn’t begin with a simple “Hi” or “Hello.”
-It began with… a Personal Data Sheet.
-Yes, you read that right.
+            They met at nineteen—too young to understand love, yet old enough to remember the feeling of it beginning.
 <br />
 <br />
-LinkedIn who? 😭
-<br />
-<br />  
-Sometime in late 2023, Vince already knew of Era—her name, her face.
-Enough to make an impression. Enough to make him quietly think,
-👀 “Siya na 'to.”
+Ariane first noticed Nico at a leadership camp, where she served as a facilitator. In a place filled with voices and movement, he found a way to reach her—not for anything grand, but for the way he made her laugh so easily. With his playful humor and lighthearted charm, he turned ordinary moments into something she would quietly carry with her long after.
             </p>
            
           </>
@@ -60,19 +51,15 @@ Enough to make an impression. Enough to make him quietly think,
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (5).jpg"
-        title="Clueless but Thriving"
+        imageSrc="/mobile-background/couple (11).JPG"
+        // title="Clueless but Thriving"
         text={
           <>
             <p>
-            Era, on the other hand?
-Clueless. Living her life. Thriving. Unbothered.
+            It was gentle. It was unexpected. And somehow, it lingered.
 <br />
 <br />
-Fast forward to the last few days of January—
-Era officially joined the Department of Agriculture.
-And just like that, the girl Vince once only knew on paper
-became his colleague.
+What began as a passing connection slowly unfolded into a friendship neither of them rushed, yet neither could ignore. And somewhere between shared glances and unguarded laughter, it became something more. Not through dramatic confessions, but through the quiet language only they seemed to understand—corny jokes that never lost their charm, songs that became pieces of each other, conversations that drifted into comfortable silence, and moments so still yet so full, they said everything words could not.
             </p>
           </>
         }
@@ -83,42 +70,27 @@ became his colleague.
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (3).jpg"
-        title="Just Work… or So They Say"
+        imageSrc="/mobile-background/couple (12).JPG"
+        // title="Just Work… or So They Say"
         text={
           <>
             <p>
-            At first, everything was normal.
-Work. Papers. Deadlines.
-Walang halong landi. Promise.
-<br />
-<br />
-Until Valentine’s Day came.
+            In the midst of ordinary days, they found something extraordinary: a love that was soft, steady, and deeply certain. Through distance, through waiting, through seasons that asked them to trust more than they could see their love did not falter. It deepened. It became a quiet refuge, a constant presence, a promise whispered in the unseen: that even in uncertainty, love endures and blooms in its own perfect time.
             </p>
            
           </>
         }
       />
-            {/* SECTION 4: Middle - Light */}
+    {/* SECTION 4: Middle - Light */}
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/frontboxes/box-3.jpg"
-        title="The Chocolate Move"
+        imageSrc="/mobile-background/couple (13).JPG"
+        // title="The Chocolate Move"
         text={
           <>
             <p>
-            Assigned at the Receiving Section, Era was simply doing her job when Vince approached her and said,
-“Ma’am, pa-receive.”
-<br />
-<br />
-Very work-appropriate…
-except the “document” turned out to be a Goya chocolate tucked inside an envelope, with a small note:
-Happy Valentine’s Day.
-<br />
-<br />
-Smooth? Medyo.
-Halata? Slightly. 😂
+            Their story was never flawless but it was real. And in every imperfection, they found grace. In every pause, patience. In every challenge, a choice to stay, to understand, to hold on to each other more tightly than before.
             </p>
           </>
         }
@@ -129,17 +101,12 @@ Halata? Slightly. 😂
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (2).jpg"
-        title="Sabay-Uwi Chronicles"
+        imageSrc="/mobile-background/couple (14).JPG"
+        // title="Sabay-Uwi Chronicles"
         text={
           <>
             <p>
-            From there, things slowly unfolded—
-from casual office encounters to quiet sabay-uwi moments.
-<br />
-<br />
-Both from Taguig (convenient 👀), Vince—who was staying at the DA dorm—started joining Era on her commute, casually saying it was because he “missed his mom.”
-(We all know… hindi lang si mother ang dahilan 😌)
+            Looking back, what once felt like coincidence now feels like something sacred—something gently written by God’s hand, weaving their paths together in ways only He could design, at a time more beautiful than they could have ever imagined.
             </p>
            
           </>      
@@ -149,31 +116,12 @@ Both from Taguig (convenient 👀), Vince—who was staying at the DA dorm—sta
                   <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/frontboxes/box-2.jpg"
-        title="The Q.Ave MRT Moment"
+        imageSrc="/mobile-background/couple (10).JPG"
+        // title="The Q.Ave MRT Moment"
         text={
           <>
             <p>
-            And then came one of the most unforgettable moments of their story— Q. Ave Station.
-<br />
-<br />
-Out of nowhere, Era said:
-“Wag mo ako bentahan ng insurance ah.”
-<br />
-<br />
-Aray.
-<br />
-<br />
-Imagine getting rejected…
-sa bagay na hindi mo naman ino-offer. 😭
-<br />
-<br />
-Because what Era didn’t know was this—
-Vince was never offering something temporary.
-<br />
-<br />
-Hindi insurance.
-Hindi panandalian.
+            Because perhaps love was never meant to arrive all at once. Perhaps it was always meant to be built slowly, tenderly, beautifully over time.
             </p>
           </>
         }
@@ -184,36 +132,13 @@ Hindi panandalian.
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/frontboxes/image-1679956003007106.jpg"
-        title="A Lifetime Choice"
+        imageSrc="/mobile-background/couple (19).JPG"
+        // title="A Lifetime Choice"
         text={
           <>
             <p>
-            What he was offering…
-was a lifetime.
-A love that stays.
-A choice he would make—every single day.
-<br />
-<br />
-Maybe hindi agad nakita ni Era.
-Hindi agad naramdaman.
-<br />
-<br />
-But through every sabay-uwi,
-every small moment,
-every quiet effort—
-<br />
-<br />
-she slowly found herself choosing him, too.
-<br />
-<br />
-Until one day, it wasn’t confusing anymore.
-<br />
-<br />
-From a name on a piece of paper,
-he became her person.
-Her constant.
-Her home.
+            They didn’t fall in love at nineteen.
+            But that was the moment their forever found its beginning.
             </p>
            
           </>      
@@ -221,10 +146,10 @@ Her home.
       />
       {/* Footer Decoration */}
       <div className="bg-motif-cream pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24 text-center text-motif-deep z-0 relative px-4">
-        <div className="w-12 sm:w-16 h-[1px] bg-motif-silver mx-auto mb-4 sm:mb-6 opacity-60"></div>
+        <div className="w-12 sm:w-16 h-[1px] bg-motif-soft mx-auto mb-4 sm:mb-6 opacity-60"></div>
         <Link 
           href="#guest-list"
-          className={`${cinzel.className} group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 text-[0.7rem] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-normal text-motif-cream bg-motif-deep rounded-sm border border-motif-deep transition-all duration-300 hover:bg-motif-accent hover:border-motif-accent hover:text-motif-cream hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-motif-soft/50 focus-visible:ring-offset-2 focus-visible:ring-offset-motif-cream`}
+          className={`${cinzel.className} group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 text-[0.7rem] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-normal text-motif-deep bg-motif-soft rounded-sm border border-motif-soft transition-all duration-300 hover:bg-motif-accent hover:border-motif-accent hover:text-motif-cream hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-motif-soft/50 focus-visible:ring-offset-2 focus-visible:ring-offset-motif-cream`}
         >
           <span className="relative z-10">Join us</span>
           {/* Subtle glow effect on hover */}
