@@ -26,11 +26,11 @@ const palette = {
 
 
 const desktopImages: string[] = [
-  '/gallery/couple (1).jpg',
-  '/gallery/couple (2).jpg',
-  '/gallery/couple (3).jpg',
-  '/gallery/couple (4).jpg',
-  '/gallery/couple (5).jpg'
+  '/desktop-background/couple (1).JPG',
+  '/desktop-background/couple (2).JPG',
+  '/desktop-background/couple (4).JPG',
+  '/desktop-background/couple (34).JPG',
+  '/desktop-background/couple (35).JPG',
 ];
 
 const mobileImages: string[] = [
