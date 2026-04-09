@@ -25,3 +25,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local image assets (served via Cloudinary)
+/public/desktop-background
+/public/mobile-background
