@@ -13,9 +13,7 @@ type ImageItem = {
 
 export default function MasonryGallery({ images }: { images: ImageItem[] }) {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null)
-  const [loaded, setLoaded] = useState<Record<string, boolean>>({})
   const topRef = useRef<HTMLDivElement | null>(null)
-  
 
   // Keep images in sequence (no shuffling)
   const filtered = useMemo(() => {
@@ -33,21 +31,13 @@ export default function MasonryGallery({ images }: { images: ImageItem[] }) {
     return () => window.removeEventListener("keydown", onKey)
   }, [filtered.length, lightboxIdx])
 
-  // Ensure already-cached images appear (loaded state from complete)
-  const setImgRef = (el: HTMLImageElement | null, src: string) => {
-    if (!el) return
-    if (el.complete) {
-      setLoaded((l) => (l[src] ? l : { ...l, [src]: true }))
-    }
-  }
-
   const getCardAspect = (image: ImageItem) => {
     return image.category === "desktop" ? "aspect-[4/3]" : "aspect-[4/5]"
   }
 
   return (
     <div ref={topRef} className="relative">
-      {/* Header (buttons removed per request) */}
+      {/* Header */}
       <div className="mb-6 flex justify-end">
         <div className="text-[#606C60]/90 text-sm font-sans">
           {filtered.length} photos
@@ -67,25 +57,16 @@ export default function MasonryGallery({ images }: { images: ImageItem[] }) {
             onClick={() => setLightboxIdx(idx)}
             aria-label="Open image"
           >
-            <div className="relative w-full overflow-hidden rounded-xl border border-[#606C60]/40 bg-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[#606C60]/60">
-              {!loaded[img.src] && (
-                <div className={`${getCardAspect(img)} w-full animate-pulse bg-gradient-to-br from-[#606C60]/30 via-[#E1D5C7]/25 to-[#606C60]/30`} />
-              )}
-              <div className={`relative w-full ${getCardAspect(img)}`}>
-                <CloudinaryImage
-                  src={img.src}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className={`rounded-xl transition-transform duration-300 group-hover:scale-[1.02] object-cover object-top ${
-                    loaded[img.src] ? "opacity-100" : "opacity-0"
-                  }`}
-                  quality={90}
-                  loading="lazy"
-                  onLoad={() => setLoaded((l) => ({ ...l, [img.src]: true }))}
-                  onError={() => setLoaded((l) => ({ ...l, [img.src]: true }))}
-                />
-              </div>
+            <div className={`relative w-full overflow-hidden rounded-xl border border-[#606C60]/40 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[#606C60]/60 ${getCardAspect(img)} bg-[#E1D5C7]/30`}>
+              <CloudinaryImage
+                src={img.src}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="rounded-xl transition-transform duration-300 group-hover:scale-[1.02] object-cover object-top"
+                quality={90}
+                loading="lazy"
+              />
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-[#606C60]/40 via-transparent to-transparent z-10" />
             </div>
           </button>

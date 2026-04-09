@@ -1,4 +1,6 @@
-import { v2 as cloudinary } from "cloudinary"
+import fs from "fs"
+import path from "path"
+import sharp from "sharp"
 import MasonryGallery from "@/components/masonry-gallery"
 import { CloudinaryImage } from "@/components/ui/cloudinary-image"
 import { siteConfig } from "@/content/site"
@@ -19,47 +21,60 @@ const GALLERY_TEXT = "#9B6A41"
 const GALLERY_DECO_FILTER =
   "brightness(0) saturate(100%) invert(32%) sepia(55%) saturate(900%) hue-rotate(355deg) brightness(95%) contrast(90%)"
 
-const PROJECT_PREFIX = "wedding-projects/ariane-and-nico"
+// Valid image extensions (checked case-insensitively)
+const VALID_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"])
 
-// Re-fetch on every request so newly uploaded images appear without a rebuild
-export const dynamic = "force-dynamic"
+/**
+ * Reads images from a public/ sub-folder, verifies each file is readable,
+ * extracts real dimensions via sharp, and returns them sorted by the number
+ * in parentheses in the filename (e.g. "couple (3).jpg" → 3).
+ * Files that cannot be read or lack dimension metadata are silently skipped.
+ */
+async function getLocalImages(folder: string) {
+  const dirPath = path.join(process.cwd(), "public", folder)
 
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-})
-
-async function getCloudinaryImages(folder: string) {
+  let filenames: string[]
   try {
-    const result = await cloudinary.api.resources({
-      type: "upload",
-      prefix: `${PROJECT_PREFIX}/${folder}`,
-      max_results: 500,
-      resource_type: "image",
-    })
-
-    return (result.resources as Array<{
-      public_id: string
-      width: number
-      height: number
-    }>)
-      .sort((a, b) => {
-        // Numerical sort by the first number found in the public_id
-        const numA = parseInt(a.public_id.match(/(\d+)/)?.[1] ?? "0", 10)
-        const numB = parseInt(b.public_id.match(/(\d+)/)?.[1] ?? "0", 10)
-        return numA - numB
-      })
-      .map(({ public_id, width, height }) => ({ src: public_id, width, height }))
+    filenames = await fs.promises.readdir(dirPath)
   } catch {
+    // Directory doesn't exist or can't be read
     return []
   }
+
+  const imageFilenames = filenames.filter((f) =>
+    VALID_EXTENSIONS.has(path.extname(f).toLowerCase())
+  )
+
+  const results = await Promise.all(
+    imageFilenames.map(async (filename) => {
+      const filePath = path.join(dirPath, filename)
+      try {
+        // Confirm file is readable before attempting to decode
+        await fs.promises.access(filePath, fs.constants.R_OK)
+        const { width, height } = await sharp(filePath).metadata()
+        // Skip if sharp couldn't determine dimensions
+        if (!width || !height) return null
+        return { src: `/${folder}/${filename}`, width, height }
+      } catch {
+        return null
+      }
+    })
+  )
+
+  return results
+    .filter((img): img is NonNullable<typeof img> => img !== null)
+    .sort((a, b) => {
+      // Sort numerically by the number inside parentheses: "couple (3).jpg" → 3
+      const numA = parseInt(a.src.match(/\((\d+)\)/)?.[1] ?? "0", 10)
+      const numB = parseInt(b.src.match(/\((\d+)\)/)?.[1] ?? "0", 10)
+      return numA - numB
+    })
 }
 
 export default async function GalleryPage() {
   const [mobileImages, desktopImages] = await Promise.all([
-    getCloudinaryImages("mobile-background"),
-    getCloudinaryImages("desktop-background"),
+    getLocalImages("mobile-background"),
+    getLocalImages("desktop-background"),
   ])
 
   const images = [
@@ -94,6 +109,7 @@ export default async function GalleryPage() {
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-y-[-1]"
           priority={false}
+          loading="lazy"
           style={{ filter: GALLERY_DECO_FILTER }}
         />
       </div>
@@ -107,6 +123,7 @@ export default async function GalleryPage() {
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1] scale-y-[-1]"
           priority={false}
+          loading="lazy"
           style={{ filter: GALLERY_DECO_FILTER }}
         />
       </div>
@@ -120,6 +137,7 @@ export default async function GalleryPage() {
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25"
           priority={false}
+          loading="lazy"
           style={{ filter: GALLERY_DECO_FILTER }}
         />
       </div>
@@ -133,6 +151,7 @@ export default async function GalleryPage() {
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1]"
           priority={false}
+          loading="lazy"
           style={{ filter: GALLERY_DECO_FILTER }}
         />
       </div>
