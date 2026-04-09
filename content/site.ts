@@ -8,15 +8,15 @@ export const siteConfig = {
     backgroundMusic:"/background_music/Your Love - Juris  Piano Cover by Gerard Chua.mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScFmpNtAI3vx2FKRaMIE38Kcn0w9ajHtz7CYn6CYgQ8yKqAng/formResponse", //done
-    message: "https://script.google.com/macros/s/AKfycbx6G-cc8v2OJdWPOSJpARdwqigPcAzAvyZPTd1v6cIwZuHHoRXW1ZBeBDDBg1Tt5Mc0/exec", //done
-    guestList: "https://script.google.com/macros/s/AKfycbyd62qRIHpsAQfG-yxV6oqF0RXtL3oJcWcsBpICn_cicAPPbEZTpa0yIcJrS-3SfnKi/exec", //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbwQ3Jo1ycAwY0ZPZcmZrRuK1Sg_X9w-9t8H5_Lq069qWKlJvaIteO1nmUEPpGLfrXdV/exec", //done
-    entourage: "https://script.google.com/macros/s/AKfycbzH5KpZMOHBmUpeuTtM3cfURhMc77_oyUaHZmSoP0JAQoenBqfb5mV5z9i2SEUSnkly/exec", //done
-    sponsors: "https://script.google.com/macros/s/AKfycbz3xGAnhS-aTRnkUPPMmT-1zVsssbDphzqdWR0gW5mSttDqE1nf4GgmELJYUrSEyt-W/exec", //done
-    weddingDetails: "https://script.google.com/macros/s/AKfycby4v8qqP2dpT5G3oOBb2g3we70qGnx_paDqH1hZdMT_P31-MzflyoQDnercr84Wemio/exec", //done
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfZJzbDRiV8R88fyNyefRGsz4mtUeQ9T8SrKPuKyGD18hTuPA/formResponse", //done
+    message: "https://script.google.com/macros/s/AKfycbzIxVfADHLXTcEKYelRtxR72h3dnGUmbxNfUQyPTg9ZKoNEqnezs4gdI3qRd4kUFmV1/exec", //done
+    guestList: "https://script.google.com/macros/s/AKfycbxGr2uguH90p8FzL0TUV0tSUviqjxK8oaIuFA4feluk7BI6XbRAPYp_pJzH3AmlVt-2/exec", //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbyTUoj_PLZ7hh2zcuKmc9fy8quqqSn6t-QgiKB8zCs29ZeuxXgl1fZqlBNp3uTOteLU/exec", //done
+    entourage: "https://script.google.com/macros/s/AKfycbzDsZqNQiNSCo-7Rcao37j6lI_SU1Ki05Sy05cy8GXW8y1bR2KecdE5AaJBJaYMFsFH/exec", //done
+    sponsors: "https://script.google.com/macros/s/AKfycbxNHk-B59Hjyg7B_aRh1ZXLixa8d7MQUXY-vLaLA1AXFtpefSNZzMvEWnUzcEUrL93E/exec", //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbxGua9_zH6CkjStyBdw7U2sUby1qqB4kj0AEwWBSj7rCtmYebqI9lPHIfElmbdeYkTi/exec", 
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1NzySlITNcY__DZtbF57EVfVjvy5SCEw35adaofzaioQ/edit?usp=sharing",
+    googleShare: "https://docs.google.com/spreadsheets/d/1XLttBpYKbt5LMetOH-NylmAoTvQwPpCkZI8OmtPfPbs/edit?usp=sharing",
   },
   wedding: {
     date: "May 31, 2026",
@@ -107,18 +107,18 @@ Mark's steadiness won her heart: the way he showed up, even when schedules were 
 Now, as they prepare to say yes before God and the people they love most, Catherine is grateful for the patience, humor, and hope Mark brings to every day. She knows this next chapter is just the start of the love story they get to write together.`,
   },
   colors: {
-    primary: "#87AE73",
+    primary: "#87AE73,",
     secondary: "#F5F5DC",
   },
   snapShare: {
-    googleDriveLink: "https://drive.google.com/drive/folders/1OHc4gq4VHPequrPTjIrV6-YpZ5ctk9lo?usp=sharing",
-    hashtag: ["#VINCEgotMesmERAized","#heaVINCENTforERA"],
+    googleDriveLink: "https://drive.google.com/drive/folders/13mDhvCcBXsmtEBHikVz2iiUwHUsfGXd_?usp=sharing",
+    hashtag: ["#NicoxAriane","#NicoandAriane"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }
 
 export const entourage = [
-  // Best Man & Maid/Matron of Honor
+  // Best Man & Maid/Matron of Honor33333333333333
   { role: "Best Man", name: "Red Casallo" },
   { role: "Matron of Honor", name: "Imeeliza Timpug" },
 
