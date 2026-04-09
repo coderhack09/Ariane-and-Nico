@@ -335,18 +335,96 @@ export function Details() {
           </p>
         </div> */}
 
-        {/* Attire Guidelines image — full width on mobile, contained on larger screens */}
-        <div className="relative mb-10 sm:mb-12 md:mb-16 -mx-4 sm:mx-0">
-          <div className="sm:mx-auto sm:max-w-3xl sm:rounded-2xl sm:overflow-hidden sm:shadow-[0_20px_60px_rgba(0,0,0,0.10)]">
-            <CloudinaryImage
-              src="/Details/2d97d6b9-2c49-46f8-8710-d56e44c71116 (1).png"
-              alt="Attire Guidelines"
-              width={1200}
-              height={1600}
-              className="w-full h-auto block"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 768px"
-              priority={false}
-            />
+        {/* Attire Guidelines Card */}
+        <div className="relative group mb-10 sm:mb-12 md:mb-16 mx-auto max-w-sm sm:max-w-md">
+          {/* Champagne glow on hover */}
+          <div className="absolute -inset-1 bg-gradient-to-br from-[#D6BFA3]/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
+
+          {/* Main card */}
+          <div className="relative bg-[#F2E4D3] rounded-xl sm:rounded-2xl overflow-hidden border border-[#4E3B31] shadow-[0_16px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-[#4E3B31]/80 transition-all duration-300">
+            <div className="p-5 sm:p-7 md:p-9 text-center">
+
+              {/* Section title */}
+              <h3
+                className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-semibold text-[#4E3B31] uppercase mb-2`}
+                style={{ letterSpacing: "0.16em", textShadow: "0 2px 10px rgba(78,59,49,0.25)" }}
+              >
+                Attire Guidelines
+              </h3>
+
+              {/* Decorative accent line */}
+              <div className="flex items-center justify-center gap-2 mb-5 sm:mb-6">
+                <div className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent via-[#8B6F5A] to-[#8B6F5A]" />
+                <div className="w-1.5 h-1.5 bg-[#8B6F5A] rounded-full" />
+                <div className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent via-[#8B6F5A] to-[#8B6F5A]" />
+              </div>
+
+              {/* Attire types */}
+              <div className="mb-5 sm:mb-6 space-y-3">
+                <div>
+                  <p className={`${cinzel.className} text-base sm:text-lg font-semibold text-[#4E3B31] leading-snug`}>
+                    Gentlemen:
+                  </p>
+                  <p className={`${cinzel.className} text-base sm:text-lg text-[#8B6F5A] leading-snug`}>
+                    Suit and Tie
+                  </p>
+                </div>
+                <div>
+                  <p className={`${cinzel.className} text-base sm:text-lg font-semibold text-[#4E3B31] leading-snug`}>
+                    Ladies:
+                  </p>
+                  <p className={`${cinzel.className} text-base sm:text-lg text-[#8B6F5A] leading-snug`}>
+                    Formal Long Gown
+                  </p>
+                </div>
+              </div>
+
+              {/* Couple illustration */}
+              <div className="flex justify-center my-5 sm:my-6">
+                <div className="relative w-44 sm:w-52 md:w-60 h-56 sm:h-64 md:h-72">
+                  <CloudinaryImage
+                    src="/Details/guest.png"
+                    alt="Guest attire illustration"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 176px, (max-width: 1024px) 208px, 240px"
+                    priority={false}
+                  />
+                </div>
+              </div>
+
+              {/* Color palette swatches */}
+              <div className="flex justify-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                {["#E8CBA1", "#A78967", "#BF8428", "#5E5625", "#8A452A"].map((color) => (
+                  <div
+                    key={color}
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#4E3B31]/20 shadow-[0_4px_12px_rgba(0,0,0,0.18)] hover:scale-110 transition-transform duration-300"
+                    style={{ backgroundColor: color }}
+                    title={color}
+                  />
+                ))}
+              </div>
+
+              {/* Encouragement text */}
+              <p className={`${cinzel.className} text-xs sm:text-sm text-[#8B6F5A] leading-relaxed mb-5 sm:mb-6 max-w-[260px] mx-auto`}>
+                We highly encourage you to dress according to color theme.<br />
+                Beige, Taupe, Old Gold, Olive Green, Burnt Orange
+              </p>
+
+              {/* Sponsors / entourage note */}
+              <div className="bg-gradient-to-br from-[#F2E4D3]/40 to-[#F5EFE6] rounded-xl p-3 sm:p-4 border-4 border-[#4E3B31]/15">
+                <p className={`${cinzel.className} text-xs sm:text-sm text-[#4E3B31] leading-relaxed`}>
+                  <span className="font-semibold">
+                    For Principal Sponsors and Part of the Entourage:
+                  </span>
+                  <br />
+                  <span className="text-[#8B6F5A]">
+                    The Groom and Bride will reach out to you seperately.
+                  </span>
+                </p>
+              </div>
+
+            </div>
           </div>
         </div>
 
