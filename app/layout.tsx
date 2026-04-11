@@ -18,7 +18,7 @@ const eventImageUrl = `${canonicalUrl}${desktopHero}`
 // The public-folder URL is kept only as a fallback in the images array below.
 
 const OG_IMAGE_CLOUDINARY =
-  "https://res.cloudinary.com/detbgvt1c/image/upload/v1775732605/wedding-projects/nico-and-ariane/Details/DetailsPreview.jpg"
+  "https://res.cloudinary.com/detbgvt1c/image/upload/f_jpg,q_auto,w_1200/wedding-projects/ariane-and-nico/Details/DetailsPreview"
 const OG_IMAGE_FALLBACK = `${canonicalUrl}${desktopHero}`
 
 const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`
