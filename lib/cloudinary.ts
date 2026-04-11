@@ -19,6 +19,21 @@ function toPublicId(src: string): string {
 }
 
 /**
+ * Encodes each path segment of a Cloudinary public ID so that filenames with
+ * spaces, parentheses, apostrophes, etc. are properly percent-encoded.
+ * Forward slashes (path separators) are preserved.
+ *
+ * e.g. "wedding-projects/ariane-and-nico/mobile-background-new/couple (10)"
+ *   → "wedding-projects/ariane-and-nico/mobile-background-new/couple%20%2810%29"
+ */
+function encodePublicId(publicId: string): string {
+  return publicId
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/")
+}
+
+/**
  * Custom Next.js Image loader for Cloudinary.
  * Used as `loader={cloudinaryLoader}` on <Image> components.
  * Automatically applies f_auto + q_auto + responsive width.
@@ -32,7 +47,7 @@ export function cloudinaryLoader({
   width: number
   quality?: number
 }): string {
-  const publicId = toPublicId(src)
+  const publicId = encodePublicId(toPublicId(src))
   const q = quality ?? "auto"
   return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/f_auto,q_${q},w_${width}/${publicId}`
 }
@@ -60,7 +75,7 @@ export function getCloudinaryUrl(
   if (!CLOUD_NAME) return src
   if (src.startsWith("https://") || src.startsWith("http://")) return src
 
-  const publicId = toPublicId(src)
+  const publicId = encodePublicId(toPublicId(src))
   const { width, height, quality = "auto", crop, gravity } = options
 
   const transforms: string[] = ["f_auto", `q_${quality}`]
