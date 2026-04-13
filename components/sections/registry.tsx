@@ -13,16 +13,16 @@ const cinzel = Cinzel({
 
 const GCASH_QR = [
   {
-    id: "BDO",
-    src: "/QR/pleaseProvideQR.png",
-    label: "BDO",
-    accountNumber: "To Follow",
+    id: "Gcash",
+    src: "/QR/Gcash.png",
+    label: "Gcash",
+    accountNumber: "AR***E KR*****E A.",
   },
   {
-    id: "Gcash",
-    src: "/QR/pleaseProvideQR.png",
-    label: "GCash",
-    accountNumber: "to Follow",
+    id: "BDO",
+    src: "/QR/BDO.png",
+    label: "BDO",
+    accountNumber: "Ariane : ********0358",
   },
 ] as const
 

@@ -238,6 +238,9 @@ export function Countdown() {
               priority={false}
             />
           </div>
+          <p className="text-white font-bold text-center text-xl tracking-widest mt-2">
+            #ARIANEmadeNICOmplete
+          </p>
         </motion.div>
       </div>
 

@@ -4,7 +4,7 @@ export const siteConfig = {
     brideNickname: "Ariane", //Ltryl
     groom: "Mark Nicolie Bayonito", //Ltryl B. Benitez
     groomNickname: "Nico",
-    monogram:"/monogram/monogram.png" ,//Ltryl
+    monogram:"/monogram/newmonogram (2).png" ,//Ltryl
     backgroundMusic:"/background_music/Your Love - Juris  Piano Cover by Gerard Chua.mp3"
   },
   googleAPI:{
