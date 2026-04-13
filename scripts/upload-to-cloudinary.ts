@@ -287,7 +287,7 @@ async function main(): Promise<void> {
   if (!opts.project) {
     console.error(
       "❌  No project name supplied.\n" +
-        '    Usage: pnpm upload:cloudinary --project "Vince and Era"'
+        '    Usage: pnpm upload:cloudinary --project "Nico and Ariane"'
     )
     process.exit(1)
   }

@@ -28,7 +28,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "May 20, 2026.",
+      deadline: "May 10, 2026.",
       contact: "Ma. Geraldine B. Divina",
       phone: "to be announced",
     },
