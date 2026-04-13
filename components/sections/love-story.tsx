@@ -38,7 +38,7 @@ export function LoveStory() {
         text={
           <>
             <p className="mb-4">
-            They met at nineteen—too young to understand love, yet old enough to remember the feeling of it beginning.
+            They met at nineteen—too young to understand love, yet old enough to remember the feeling of its beginning.
 <br />
 <br />
 Ariane first noticed Nico at a leadership camp, where she served as a facilitator. In a place filled with voices and movement, he found a way to reach her—not for anything grand, but for the way he made her laugh so easily. With his playful humor and lighthearted charm, he turned ordinary moments into something she would quietly carry with her long after.
