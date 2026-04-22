@@ -11,14 +11,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ariane-and-nico.wed
 const canonicalUrl = siteUrl.replace(/\/$/, "")
 const desktopHero = "/Details/DetailsPreview.jpg"
 const mobileHero = "/Details/DetailsPreview.jpg"
-const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
-// Hardcoded Cloudinary URL — image is already uploaded and always accessible via CDN.
-// f_jpg forces JPEG so all OG scrapers (iMessage, Viber, Facebook, etc.) can display it.
-// The public-folder URL is kept only as a fallback in the images array below.
-
-const OG_IMAGE_CLOUDINARY =
-  "https://res.cloudinary.com/detbgvt1c/image/upload/f_jpg,q_auto,w_1200/wedding-projects/ariane-and-nico/Details/DetailsPreview"
 const OG_IMAGE_FALLBACK = `${canonicalUrl}${desktopHero}`
 
 const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`
@@ -57,7 +50,7 @@ const jsonLd = {
       },
     },
   ],
-  image: [OG_IMAGE_CLOUDINARY],
+  image: [OG_IMAGE_FALLBACK],
   description:
     `You're invited to celebrate the wedding of ${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}. Discover ceremony and reception details, RSVP, and explore their story.`,
   organizer: {
@@ -133,19 +126,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: OG_IMAGE_CLOUDINARY,
-        secureUrl: OG_IMAGE_CLOUDINARY,
-        width: 1200,
-        height: 630,
-        type: "image/jpeg",
-        alt: `${coupleNames} Wedding Invitation - ${siteConfig.wedding.date}`,
-      },
-      {
         url: OG_IMAGE_FALLBACK,
         secureUrl: OG_IMAGE_FALLBACK,
         width: 1200,
         height: 630,
-        type: "image/png",
+        type: "image/jpeg",
         alt: `${coupleNames} Wedding Invitation - ${siteConfig.wedding.date}`,
       },
     ],
@@ -155,7 +140,7 @@ export const metadata: Metadata = {
     title: `${coupleNames} Wedding Invitation`,
     description:
       `You're invited to the wedding of ${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname} on ${siteConfig.wedding.date}. RSVP, explore their story, and get all the details for the big day! #${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}SayIDo`,
-    images: [OG_IMAGE_CLOUDINARY, OG_IMAGE_FALLBACK],
+    images: [OG_IMAGE_FALLBACK],
     creator: `@${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}`,
     site: `@${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}`,
   },

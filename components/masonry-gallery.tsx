@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { CloudinaryImage } from "@/components/ui/cloudinary-image"
-import { getCloudinaryUrl } from "@/lib/cloudinary"
 
 type ImageItem = {
   src: string
@@ -92,7 +91,7 @@ export default function MasonryGallery({ images }: { images: ImageItem[] }) {
             <div className="flex items-center justify-center w-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={getCloudinaryUrl(filtered[lightboxIdx].src, { width: 1600, quality: 95 })}
+                src={filtered[lightboxIdx].src}
                 alt=""
                 className="rounded-xl shadow-2xl border border-[#606C60]/30 object-contain"
                 style={{ maxHeight: "80vh", width: "auto", maxWidth: "90vw" }}

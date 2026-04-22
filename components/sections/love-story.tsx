@@ -34,7 +34,7 @@ export function LoveStory() {
         layout="image-left"
         isFirst={true}
         // title="The Unexpected Beginning"
-        imageSrc="/mobile-background/couple (18).JPG"
+        imageSrc="/mobile-background/couple (18).webp"
         text={
           <>
             <p className="mb-4">
@@ -52,7 +52,7 @@ Ariane first noticed Nico at a leadership camp, where she served as a facilitato
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (11).JPG"
+        imageSrc="/mobile-background/couple (11).webp"
         // title="Clueless but Thriving"
         text={
           <>
@@ -71,7 +71,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/frontboxes/couple (56).JPG"
+        imageSrc="/frontboxes/couple (56).webp"
         // title="Just Work… or So They Say"
         text={
           <>
@@ -86,7 +86,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (13).JPG"
+        imageSrc="/mobile-background/couple (13).webp"
         // title="The Chocolate Move"
         text={
           <>
@@ -102,7 +102,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (19).JPG"
+        imageSrc="/mobile-background/couple (19).webp"
         // title="Sabay-Uwi Chronicles"
         text={
           <>
@@ -117,7 +117,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
                   <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (10).JPG"
+        imageSrc="/mobile-background/couple (10).webp"
         // title="The Q.Ave MRT Moment"
         text={
           <>
@@ -133,7 +133,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (48).JPG"
+        imageSrc="/mobile-background/couple (48).webp"
         // title="A Lifetime Choice"
         text={
           <>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import { siteConfig } from '@/content/site';
-import { CloudinaryImage } from '@/components/ui/cloudinary-image';
+import Image from 'next/image';
 
 
 interface LoadingScreenProps {
@@ -16,7 +16,7 @@ const COUNTDOWN_BOXES = [
   { src: '/frontboxes/box (2).JPG' }
 ];
 
-const MAIN_BW_IMAGE = '/mobile-background-new/couple (43).JPG';
+const MAIN_BW_IMAGE = '/mobile-background-new/couple (43).webp';
 const DESKTOP_BW_IMAGE = '/frontboxes/desktop.JPG';
 const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
 const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
@@ -119,7 +119,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       {/* Background image with overlay */}
       <div className="absolute inset-0">
         {/* Mobile background */}
-        <CloudinaryImage
+        <Image
           src={MAIN_BW_IMAGE}
           alt=""
           fill
@@ -128,7 +128,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           priority
         />
         {/* Desktop background (md and above) */}
-        <CloudinaryImage
+        <Image
           src={DESKTOP_BW_IMAGE}
           alt=""
           fill
@@ -208,7 +208,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                   transition: `opacity ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
                 }}
               >
-                <CloudinaryImage
+                <Image
                   src={item.src}
                   alt={coupleNames}
                   fill

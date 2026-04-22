@@ -315,14 +315,8 @@ export function GuestList() {
       // Trigger event to refresh Book of Guests
       window.dispatchEvent(new Event("rsvpUpdated"))
       
-      // Close modal and reset after showing success
-      setTimeout(() => {
-        setShowModal(false)
-        setSearchQuery("")
-        setSelectedGuest(null)
-        setSuccess(null)
-        fetchGuests()
-      }, 3000)
+      // Refresh guest list in the background
+      fetchGuests()
     } catch (error) {
       console.error("Error submitting RSVP:", error)
       setError("Failed to submit RSVP. Please try again.")
@@ -773,7 +767,7 @@ export function GuestList() {
                     )}
 
                     {/* Message to the couple */}
-                    <div>
+                    {/* <div>
                     <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-[#9B6A41] mb-1.5 sm:mb-2 font-sans flex-wrap">
                       <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#9B6A41] flex-shrink-0" />
                         <span>Your Message to the Couple</span>
@@ -787,7 +781,7 @@ export function GuestList() {
                         rows={3}
                       className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-[#9B6A41]/60 focus:border-[#9B6A41] rounded-lg text-xs sm:text-sm font-sans text-[#243127] placeholder:text-[#909E8D]/70 transition-all duration-300 focus:ring-2 focus:ring-[#9B6A41]/20 resize-none bg-white"
                       />
-                    </div>
+                    </div> */}
 
                     {/* Email */}
                     <div>
@@ -830,60 +824,6 @@ export function GuestList() {
                 )}
               </div>
 
-              {/* Enhanced Success Overlay */}
-              {success && (
-                <div className="absolute inset-0 bg-[#BCCFC0]/98 backdrop-blur-md flex items-center justify-center z-50 animate-in fade-in duration-300 p-2 sm:p-3 md:p-4">
-                  <div className="text-center p-3 sm:p-4 md:p-5 lg:p-6 max-w-sm mx-auto">
-                    {/* Enhanced Icon Circle */}
-                    <div className="relative inline-flex items-center justify-center mb-3 sm:mb-4">
-                      {/* Animated rings */}
-                      <div className="absolute inset-0 rounded-full border-2 border-[#8B3036]/20 animate-ping" />
-                      <div className="absolute inset-0 rounded-full border-2 border-[#8B3036]/30" />
-                      {/* Icon container */}
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-white rounded-full flex items-center justify-center shadow-xl">
-                        <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[#BCCFC0]" strokeWidth={2.5} />
-                      </div>
-                    </div>
-                    
-                    {/* Title */}
-                    <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-bold text-[#8B3036] mb-2 sm:mb-3">
-                      RSVP Confirmed!
-                    </h4>
-                    
-                    {/* Message based on RSVP response */}
-                    {formData.RSVP === "Yes" && (
-                      <div className="space-y-1 sm:space-y-1.5 mb-2 sm:mb-3">
-                        <p className="text-[#8B3036]/95 text-xs sm:text-sm font-medium">
-                          We're thrilled you'll be joining us!
-                        </p>
-                        <p className="text-[#8B3036]/80 text-[10px] sm:text-xs">
-                          Your response has been recorded
-                        </p>
-                      </div>
-                    )}
-                    {formData.RSVP === "No" && (
-                      <p className="text-[#8B3036]/90 text-xs sm:text-sm mb-2 sm:mb-3">
-                        We'll miss you, but thank you for letting us know.
-                      </p>
-                    )}
-                    {!formData.RSVP && (
-                      <p className="text-[#8B3036]/90 text-xs sm:text-sm mb-2 sm:mb-3">
-                        Thank you for your response!
-                      </p>
-                    )}
-                    
-                    {/* Subtle closing indicator */}
-                    <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#8B3036]/60 rounded-full animate-pulse" />
-                      <p className="text-[#8B3036]/70 text-[10px] sm:text-xs">
-                        This will close automatically
-                      </p>
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#8B3036]/60 rounded-full animate-pulse" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* Error message */}
               {error && !success && (
                 <div className="px-2 sm:px-2.5 md:px-4 lg:px-6 xl:px-8 pb-2 sm:pb-2.5 md:pb-4 lg:pb-6">
@@ -895,6 +835,97 @@ export function GuestList() {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* RSVP Success — rendered outside RSVP modal to escape transform stacking context */}
+        {success && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-5 sm:p-8 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="w-full max-w-xs animate-in zoom-in-95 duration-200">
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+
+                {/* Thin top bar */}
+                <div className="h-[3px] w-full bg-gradient-to-r from-[#9B6A41] via-[#D6BFA3] to-[#9B6A41]" />
+
+                <div className="px-6 pt-6 pb-6 text-center">
+
+                  {/* Check icon */}
+                  <div className="relative inline-flex items-center justify-center mb-4">
+                    <div className="absolute w-14 h-14 rounded-full bg-[#BCCFC0]/20 animate-ping" style={{ animationDuration: "2.5s" }} />
+                    <div className="relative w-12 h-12 rounded-full bg-[#BCCFC0] flex items-center justify-center shadow-md">
+                      <CheckCircle className="h-6 w-6 text-white" strokeWidth={2} />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h4 className={`${cinzel.className} text-base font-bold text-[#243127] tracking-widest uppercase mb-1`}>
+                    RSVP Confirmed
+                  </h4>
+
+                  {/* Response subtitle */}
+                  {formData.RSVP === "Yes" && (
+                    <p className={`${cormorant.className} text-sm text-[#9B6A41] leading-snug`}>
+                      We&apos;re thrilled you&apos;ll be joining us — your spot is saved!
+                    </p>
+                  )}
+                  {formData.RSVP === "No" && (
+                    <p className={`${cormorant.className} text-sm text-[#9B6A41] leading-snug`}>
+                      We&apos;ll miss you, but thank you for letting us know.
+                    </p>
+                  )}
+                  {!formData.RSVP && (
+                    <p className={`${cormorant.className} text-sm text-[#9B6A41] leading-snug`}>
+                      Thank you for your response!
+                    </p>
+                  )}
+
+                  {/* Divider */}
+                  <div className="flex items-center gap-3 my-4">
+                    <div className="flex-1 h-px bg-[#D6BFA3]/70" />
+                    <Heart className="h-2.5 w-2.5 text-[#D6BFA3] flex-shrink-0" />
+                    <div className="flex-1 h-px bg-[#D6BFA3]/70" />
+                  </div>
+
+                  {/* Nudge text */}
+                  <p className={`${cormorant.className} text-sm text-[#243127]/65 leading-relaxed mb-4`}>
+                    Before you go, leave a message for the couple — your words will be a cherished memory they can always look back on.
+                  </p>
+
+                  {/* CTA */}
+                  <a
+                    href="#messages"
+                    onClick={() => {
+                      setSuccess(null)
+                      setShowModal(false)
+                      setSearchQuery("")
+                      setSelectedGuest(null)
+                      setTimeout(() => {
+                        const el = document.getElementById("messages")
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+                      }, 100)
+                    }}
+                    className={`${cinzel.className} inline-flex items-center justify-center gap-2 w-full bg-[#9B6A41] hover:bg-[#9B6A41]/90 active:scale-[0.98] text-white text-[10px] tracking-widest uppercase font-semibold py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md mb-3`}
+                  >
+                    <MessageSquare className="h-3 w-3 flex-shrink-0" />
+                    Leave a Message
+                  </a>
+
+                  {/* Dismiss */}
+                  <button
+                    onClick={() => {
+                      setSuccess(null)
+                      setShowModal(false)
+                      setSearchQuery("")
+                      setSelectedGuest(null)
+                    }}
+                    className="text-[#909E8D] hover:text-[#243127] text-[11px] tracking-wide transition-colors duration-200"
+                  >
+                    Maybe later — close
+                  </button>
+
+                </div>
+              </div>
             </div>
           </div>
         )}

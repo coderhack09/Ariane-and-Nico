@@ -3,7 +3,7 @@
 import { Section } from "@/components/section"
 import { Copy, Check, Navigation, MapPin } from "lucide-react"
 import { useState, useEffect } from "react"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import Image from 'next/image';
 import { siteConfig } from "@/content/site"
 import { Cinzel } from "next/font/google"
 
@@ -90,7 +90,7 @@ export function Details() {
 
       {/* Flower decoration - top left corner */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -102,7 +102,7 @@ export function Details() {
 
       {/* Flower decoration - top right corner */}
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -114,7 +114,7 @@ export function Details() {
 
       {/* Flower decoration - left bottom corner */}
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -126,7 +126,7 @@ export function Details() {
 
       {/* Flower decoration - right bottom corner */}
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -173,7 +173,7 @@ export function Details() {
             {/* Venue Image */}
             <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem] overflow-hidden">
               {ceremonyImages.map((src, index) => (
-                <CloudinaryImage
+                <Image
                   key={src}
                   src={src}
                   alt={`${siteConfig.ceremony.location} ${index + 1}`}
@@ -338,7 +338,7 @@ export function Details() {
         {/* Attire Guidelines Card */}
         <div className="relative mb-10 sm:mb-12 md:mb-16 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
           <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.13)] border border-[#4E3B31]/15">
-            <CloudinaryImage
+            <Image
               src="/Details/Gemini_Generated_Image_ql7e4mql7e4mql7e.png"
               alt="Attire Guidelines"
               width={1200}

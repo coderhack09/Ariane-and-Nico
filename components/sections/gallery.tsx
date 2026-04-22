@@ -7,7 +7,7 @@ import { Section } from "@/components/section"
 import { motion } from "motion/react"
 import { Cormorant_Garamond, WindSong, Cinzel } from "next/font/google"
 import { siteConfig } from "@/content/site"
-import { CloudinaryImage } from '@/components/ui/cloudinary-image';
+import Image from 'next/image';
 
 const MotionLink = motion(Link)
 // Removed circular gallery in favor of a responsive masonry layout
@@ -137,7 +137,7 @@ export function Gallery() {
       
       {/* Flower decoration - top left corner */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -151,7 +151,7 @@ export function Gallery() {
       
       {/* Flower decoration - top right corner */}
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -165,7 +165,7 @@ export function Gallery() {
       
       {/* Flower decoration - left bottom corner */}
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -179,7 +179,7 @@ export function Gallery() {
       
       {/* Flower decoration - right bottom corner */}
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -259,7 +259,7 @@ export function Gallery() {
                     <div className="absolute -inset-0.5 bg-gradient-to-br from-[#606C60]/45 via-[#606C60]/28 to-[#E1D5C7]/20 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
                     
                     <div className="relative aspect-[3/4] overflow-hidden">
-                      <CloudinaryImage
+                      <Image
                         src={item.image}
                         alt={item.text || `Gallery image ${index + 1}`}
                         fill
@@ -410,7 +410,7 @@ export function Gallery() {
                   transition: pinchStartDist ? 'none' : 'transform 200ms ease-out',
                 }}
               >
-                <CloudinaryImage
+                <Image
                   src={selectedImage.image}
                   alt={selectedImage.text || "Gallery image"}
                   width={900}

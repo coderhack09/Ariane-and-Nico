@@ -7,7 +7,6 @@ import { Play } from "lucide-react"
 import { useAudio } from "@/contexts/audio-context"
 import { Cinzel } from "next/font/google"
 import { CloudinaryImage } from "@/components/ui/cloudinary-image"
-import { getCloudinaryUrl } from "@/lib/cloudinary"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -151,12 +150,6 @@ export function CoupleVideo() {
       >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <img
-          src={getCloudinaryUrl("/decoration/DDA foto's, afbeeldingen, assets.jpg", { width: 1920 })}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        />
         {/* Background gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#8B6F5A] to-[#8B6F5A]" />
       </div>
@@ -243,7 +236,7 @@ export function CoupleVideo() {
                   >
                     {/* Custom poster image */}
                     <CloudinaryImage
-                      src="/desktop-background/couple (14).jpg"
+                      src="/desktop-background/couple (14).webp"
                       alt="Video thumbnail"
                       fill
                       className="object-cover transform group-hover:scale-105 transition-transform duration-500"

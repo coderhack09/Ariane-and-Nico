@@ -129,7 +129,7 @@ const faqItems: FAQItem[] = [
   },
   {
     question: `HOW DO I RSVP?`,
-    answer: `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. We kindly ask for your response on or before April 15, 2026 to help us prepare for the big day.`,
+    answer: `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. We kindly ask for your response on or before May 10, 2026 to help us prepare for the big day.`,
   },
   {
     question: `CAN I BRING A PLUS ONE OR MY KIDS?`,

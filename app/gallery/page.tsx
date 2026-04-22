@@ -1,6 +1,6 @@
 import imageManifest from "@/lib/generated/image-manifest.json"
 import MasonryGallery from "@/components/masonry-gallery"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import Image from 'next/image';
 import { siteConfig } from "@/content/site"
 import { Cinzel, Cormorant_Garamond } from "next/font/google"
 
@@ -36,7 +36,7 @@ export default function GalleryPage() {
       
       {/* Flower decoration - top left corner */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -50,7 +50,7 @@ export default function GalleryPage() {
       
       {/* Flower decoration - top right corner */}
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -64,7 +64,7 @@ export default function GalleryPage() {
       
       {/* Flower decoration - left bottom corner */}
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
@@ -78,7 +78,7 @@ export default function GalleryPage() {
       
       {/* Flower decoration - right bottom corner */}
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt="Flower decoration"
           width={300}
