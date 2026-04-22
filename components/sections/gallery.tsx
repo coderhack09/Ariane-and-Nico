@@ -41,7 +41,7 @@ const galleryHashtag = siteConfig.snapShare.hashtag
 const galleryItems = [
   { image: "/mobile-background-new/couple (33).webp", text: " " },
   { image: "/mobile-background-new/couple (44).webp", text: " " },
-  { image: "/mobile-background/couple (43).webp", text: " " },
+  { image: "/mobile-background-new/couple (20).webp", text: " " },
   { image: "/mobile-background-new/couple (31).webp", text: " " },
   { image: "/mobile-background-new/couple (4).webp", text: " " },
   { image: "/mobile-background-new/couple (38).webp", text: " " },
