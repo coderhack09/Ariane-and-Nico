@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfZJzbDRiV8R88fyNyefRGsz4mtUeQ9T8SrKPuKyGD18hTuPA/formResponse", //done
-    message: "https://script.google.com/macros/s/AKfycbzIxVfADHLXTcEKYelRtxR72h3dnGUmbxNfUQyPTg9ZKoNEqnezs4gdI3qRd4kUFmV1/exec", //done
+    message: "https://script.google.com/macros/s/AKfycby_XHJM07697ysxMIY2BVSki-9IYigrS8SyQkqUdt7DrTfoxe649JrULQsgsyCpOxpTeA/exec", //done
     guestList: "https://script.google.com/macros/s/AKfycbxGr2uguH90p8FzL0TUV0tSUviqjxK8oaIuFA4feluk7BI6XbRAPYp_pJzH3AmlVt-2/exec", //done
     guestRequest: "https://script.google.com/macros/s/AKfycbyTUoj_PLZ7hh2zcuKmc9fy8quqqSn6t-QgiKB8zCs29ZeuxXgl1fZqlBNp3uTOteLU/exec", //done
     entourage: "https://script.google.com/macros/s/AKfycbzDsZqNQiNSCo-7Rcao37j6lI_SU1Ki05Sy05cy8GXW8y1bR2KecdE5AaJBJaYMFsFH/exec", //done
