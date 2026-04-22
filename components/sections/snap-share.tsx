@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import {AppImage} from "@/components/ui/app-image"
+import { AppImage } from "@/components/ui/app-image"
 import { motion } from "motion/react"
-import { Instagram, Facebook, Twitter, Share2, Copy, Download, Check } from "lucide-react"
+import { Share2, Copy, Download, Check } from "lucide-react"
 import { Section } from "@/components/section"
 import { QRCodeCanvas } from "qrcode.react"
 import { siteConfig } from "@/content/site"
@@ -20,22 +20,13 @@ const cinzel = Cinzel({
 })
 
 export function SnapShare() {
-  const [copiedHashtagIndex, setCopiedHashtagIndex] = useState<number | null>(null)
-  const [copiedAllHashtags, setCopiedAllHashtags] = useState(false)
   const [copiedDriveLink, setCopiedDriveLink] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const websiteUrl = typeof window !== "undefined" ? window.location.href : "https://example.com"
   // https://drive.google.com/drive/folders/1_40IPBZ0bF26uPV7ngLgjyPnUoN4V07Y?usp=sharing
   const driveLink = "https://drive.google.com/drive/folders/1_40IPBZ0bF26uPV7ngLgjyPnUoN4V07Y?usp=sharing"
-  const hashtags = [siteConfig.snapShare.hashtag]
-  const allHashtagsText = hashtags.join(" ")
   const groomNickname = siteConfig.couple.groomNickname
   const brideNickname = siteConfig.couple.brideNickname
-  const sanitizedGroomName = groomNickname.replace(/\s+/g, "")
-  const sanitizedBrideName = brideNickname.replace(/\s+/g, "")
-
-  const shareText = `Celebrate ${groomNickname} & ${brideNickname}'s wedding! Explore the details and share your special memories: ${websiteUrl} ${allHashtagsText} ✨`
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640)
@@ -49,32 +40,6 @@ export function SnapShare() {
   }, [])
 
 
-  const shareOnSocial = (platform: "instagram" | "facebook" | "twitter" | "tiktok") => {
-    const encodedUrl = encodeURIComponent(websiteUrl)
-    const encodedText = encodeURIComponent(shareText)
-
-    const urls: Record<string, string> = {
-      instagram: `https://www.instagram.com/`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?text=${encodedText}`,
-      tiktok: `https://www.tiktok.com/`,
-    }
-
-    const target = urls[platform]
-    if (target) {
-      window.open(target, "_blank", "width=600,height=400")
-    }
-  }
-
-  const downloadQRCode = () => {
-    const canvas = document.getElementById("snapshare-qr") as HTMLCanvasElement | null
-    if (!canvas) return
-    const link = document.createElement("a")
-    link.download = `${sanitizedGroomName.toLowerCase()}-${sanitizedBrideName.toLowerCase()}-wedding-qr.png`
-    link.href = canvas.toDataURL("image/png")
-    link.click()
-  }
-
   const downloadDriveQRCode = () => {
     const canvas = document.getElementById("drive-qr") as HTMLCanvasElement | null
     if (!canvas) return
@@ -82,26 +47,6 @@ export function SnapShare() {
     link.download = "drive-qr.png"
     link.href = canvas.toDataURL("image/png")
     link.click()
-  }
-
-  const copyHashtag = async (hashtag: string, index: number) => {
-    try {
-      await navigator.clipboard.writeText(hashtag)
-      setCopiedHashtagIndex(index)
-      setTimeout(() => setCopiedHashtagIndex(null), 2000)
-    } catch (err) {
-      console.error("Failed to copy: ", err)
-    }
-  }
-
-  const copyAllHashtags = async () => {
-    try {
-      await navigator.clipboard.writeText(allHashtagsText)
-      setCopiedAllHashtags(true)
-      setTimeout(() => setCopiedAllHashtags(false), 2000)
-    } catch (err) {
-      console.error("Failed to copy: ", err)
-    }
   }
 
   const copyDriveLink = async () => {
@@ -232,7 +177,7 @@ export function SnapShare() {
               fontWeight: 600,
             }}
           >
-            Capture & Share the Celebration
+            Capture and Share the Celebration
           </h2>
           <p
             className={`${cormorant.className} text-sm sm:text-base md:text-lg text-[#F5EFE6] max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}
@@ -263,27 +208,27 @@ export function SnapShare() {
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <AppImage src="/mobile-background-new/couple (10).JPG" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                    <AppImage src="/mobile-background-new/couple (10).webp" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                   </motion.div>
                   <motion.div
                     className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-md border-2 border-[#C44569]/30 hover:border-[#C44569]/50 transition-all"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <AppImage src="/mobile-background-new/couple (14).JPG" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                    <AppImage src="/mobile-background-new/couple (14).webp" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                   </motion.div>
                   <motion.div
                     className="relative col-span-2 aspect-[3/2] rounded-lg sm:rounded-xl overflow-hidden shadow-md border-2 border-[#C44569]/30 hover:border-[#C44569]/50 transition-all"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <AppImage src="/desktop-background-new/couple (37).JPG" alt="Wedding moment 3" fill className="object-cover" />
+                    <AppImage src="/desktop-background-new/couple (37).webp" alt="Wedding moment 3" fill className="object-cover" />
                   </motion.div>
                 </div>
                 <p
                   className={`${cormorant.className} text-[#8B6F5A] text-sm sm:text-base text-center mt-3 sm:mt-5 px-1.5 leading-relaxed`}
                 >
-                  Share your snapshots to be featured in our keepsake gallery.
+                  Share your snapshot to be featured in our keepsake gallery.
                 </p>
               </div>
             </div>
