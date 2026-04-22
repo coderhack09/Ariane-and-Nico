@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 
 type ImageItem = {
   src: string
@@ -58,7 +58,7 @@ export default function MasonryGallery({ images }: { images: ImageItem[] }) {
             aria-label="Open image"
           >
             <div className={`relative w-full overflow-hidden rounded-xl border border-[#606C60]/40 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[#606C60]/60 ${getCardAspect(img)} bg-[#E1D5C7]/30`}>
-              <CloudinaryImage
+              <AppImage
                 src={img.src}
                 alt=""
                 fill

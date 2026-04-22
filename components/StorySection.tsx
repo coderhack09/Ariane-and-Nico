@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Cinzel, Cormorant_Garamond } from "next/font/google";
-import { CloudinaryImage } from '@/components/ui/cloudinary-image';
+import {AppImage} from '@/components/ui/app-image';
 
 import { TornPaperEdge } from './TornPaperEdge';
 
@@ -101,7 +101,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
             `}>
                <div className={`${imageFrameClass} w-full`}>
                  <div className="aspect-[3/4] w-full overflow-hidden relative group">
-                   <CloudinaryImage
+                   <AppImage
                      src={imageSrc} 
                      alt="Story Moment" 
                      fill

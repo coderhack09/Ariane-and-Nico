@@ -6,7 +6,7 @@ import { motion } from "motion/react"
 import { Play } from "lucide-react"
 import { useAudio } from "@/contexts/audio-context"
 import { Cinzel } from "next/font/google"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -235,7 +235,7 @@ export function CoupleVideo() {
                     onClick={handleThumbnailClick}
                   >
                     {/* Custom poster image */}
-                    <CloudinaryImage
+                    <AppImage
                       src="/desktop-background/couple (14).webp"
                       alt="Video thumbnail"
                       fill

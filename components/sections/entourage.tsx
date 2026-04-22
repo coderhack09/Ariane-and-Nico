@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useRef } from "react"
 import { siteConfig, entourage as staticEntourage, principalSponsors as staticSponsors } from "@/content/site"
 import { Loader2, Users } from "lucide-react"
 import { Cormorant_Garamond, Cinzel } from "next/font/google"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -354,7 +354,7 @@ export function Entourage() {
       >
       {/* Corner floral decoration - softly tinted */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
-        <CloudinaryImage
+        <AppImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -363,7 +363,7 @@ export function Entourage() {
           style={{ transform: "scaleY(-1)", filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
-        <CloudinaryImage
+        <AppImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -372,7 +372,7 @@ export function Entourage() {
           style={{ transform: "scaleX(-1) scaleY(-1)", filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
-        <CloudinaryImage
+        <AppImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -381,7 +381,7 @@ export function Entourage() {
           style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
-        <CloudinaryImage
+        <AppImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}

@@ -1,6 +1,6 @@
 "use client"
 
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 
 export function GalleryQRSection() {
   return (
@@ -15,7 +15,7 @@ export function GalleryQRSection() {
 
           {/* Capture the Love Image */}
           <div className="relative w-full rounded-xl overflow-hidden shadow-lg">
-            <CloudinaryImage
+            <AppImage
               src="/Couple_img/Capture the Love.png"
               alt="Capture the Love"
               width={800}

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 import { motion } from "motion/react"
 import { Instagram, Facebook, Twitter, Share2, Copy, Download, Check } from "lucide-react"
 import { Section } from "@/components/section"
@@ -263,21 +263,21 @@ export function SnapShare() {
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <CloudinaryImage src="/mobile-background-new/couple (10).JPG" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                    <AppImage src="/mobile-background-new/couple (10).JPG" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                   </motion.div>
                   <motion.div
                     className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-md border-2 border-[#C44569]/30 hover:border-[#C44569]/50 transition-all"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <CloudinaryImage src="/mobile-background-new/couple (14).JPG" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                    <AppImage src="/mobile-background-new/couple (14).JPG" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                   </motion.div>
                   <motion.div
                     className="relative col-span-2 aspect-[3/2] rounded-lg sm:rounded-xl overflow-hidden shadow-md border-2 border-[#C44569]/30 hover:border-[#C44569]/50 transition-all"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <CloudinaryImage src="/desktop-background-new/couple (37).JPG" alt="Wedding moment 3" fill className="object-cover" />
+                    <AppImage src="/desktop-background-new/couple (37).JPG" alt="Wedding moment 3" fill className="object-cover" />
                   </motion.div>
                 </div>
                 <p

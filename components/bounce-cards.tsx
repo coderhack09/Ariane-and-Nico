@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { gsap } from "gsap"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import {AppImage} from "@/components/ui/app-image"
 
 interface BounceCardsProps {
   className?: string
@@ -143,7 +143,7 @@ export default function BounceCards({
           onTouchStart={() => pushSiblings(idx)}
           onTouchEnd={() => resetSiblings()}
         >
-          <CloudinaryImage
+          <AppImage
             src={src || "/placeholder.svg"}
             alt={`card-${idx}`}
             fill

@@ -14,14 +14,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
-      {
-        protocol: "https",
         hostname: "**",
       },
     ],
-    // Images are optimized by Cloudinary (f_auto, q_auto) via cloudinaryLoader
     unoptimized: false,
   },
   experimental: {
@@ -32,7 +27,6 @@ const nextConfig = {
       '@radix-ui/react-select',
     ],
   },
-  serverExternalPackages: ['cloudinary'],
   headers: async () => {
     const isDevelopment = process.env.NODE_ENV === 'development';
     
