@@ -71,7 +71,7 @@ What began as a passing connection slowly unfolded into a friendship neither of 
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/frontboxes/couple (56).webp"
+        imageSrc="/frontboxes/couple (56).JPG"
         // title="Just Work… or So They Say"
         text={
           <>
